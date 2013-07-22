@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Home";
+    Page.Meta_Description = "Hi, I'm Kestrel. I've been a software developer now for 10+ years and I love it! I was a co-founder of Quality Indicators Pro and am the lead developer for Bendzulla Actuarial.";
+}
+
+
+<section id="intro">
+    <div class="page-header">
+        <h1>Kestrel Blackmore <small>this is me</small></h1>
+    </div>
+    <div class="row">
+        <div class="span9 well">
+            <p>Hi, I'm Kestrel. I've been a software developer now for 10+ years and I love it!
+            I was a co-founder of <a href="http://www.qualityindicatorspro.com.au">Quality Indicators Pro</a> and now I'm the lead developer for <a href="http://www.bendzulla.com">Bendzulla Actuarial</a>.
+            Have a look around. I hope you like what you see.</p>  
+        </div>
+    </div>
+</section>
+
+<section id="mystuff">
+    <div class="row">
+        <div class="span3">
+            <ul class="thumbnails">
+                <li class="span3 tile tile-double tile-teal"><a href="http://au.linkedin.com/in/kestrelblackmore" target="_blank"><img src="/assets/img/linkedintile.png"><h1>linkedin</h1></a></li>
+            </ul>
+        </div>
+        <div class="span3">
+            <ul class="thumbnails">
+                <li class="span3 tile tile-double tile-yellow"><a href="https://github.com/kestrelblackmore" target="_blank"><img src="/assets/img/githubtile.png"><h1>GitHub</h1></a></li>
+            </ul>
+        </div>
+        <div class="span3 last">
+            <ul class="thumbnails">
+                <li class="span3 tile tile-double tile-blue "><a href="https://twitter.com/kestrelblackmor" target="_blank"><img src="/assets/img/twittertile.png"><h1>Twitter</h1></a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<h2>Archives <small>from my blog</small></h2>
+@RenderPage("partials/_Archives.cshtml")
+
