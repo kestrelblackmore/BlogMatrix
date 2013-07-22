@@ -6084,8 +6084,9 @@ h5,
 h6 {
   margin-top: 5px;
   margin-bottom: 5px;
+  padding-top: 10px;
   padding-bottom: 10px;
-  text-transform: lowercase;
+  /*text-transform: lowercase;*/
 }
 h1 {
   font-size: 56px;
