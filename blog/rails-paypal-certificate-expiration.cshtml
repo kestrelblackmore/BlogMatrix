@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Rails and PayPal Certificate Expiration";
+    Page.Meta_Description = "What to do when the public key you provided PayPal expires.";
+}
+
+<section id="page_title">
+    
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    <p>On <a href="http://railscasts.com" target="_blank">railscasts.com</a> episodes #141 to #143 Ryan went through how to setup online credit card payments via Paypal and IPN. Worked like a treat after a few late nights and some modifications.</p>
+    <p>If several years down the track you find the public key you provided Paypal has expired,  do the following.</p>
+    
+    <h4>1. Generate a new public certificate</h4>
+    <p>Run the following command wherever your current certificates are held. Most likely in RAILS_ROOT/certs. Change 365 to how many days you want the certificate to be valid for.</p>
+    <pre>RAILS_ROOT/certs$ openssl req -new -key app_key.pem -x509 -days 365 -out app_cert.pem</pre>
+
+    <h4>2. Upload new public certificate to Paypal</h4>
+    <p>Login to your Paypal Account and go to the following menus: My Account -> Profile -> My selling tools -> Encrypted payment settings. The last option will be at the bottom of the page. This will take you to a Website Payment Certificates page.</p>
+    <p>You should see your old expired certificate here in a list. Click the Add button. This will take you to a page where you will need to upload the certificate you generated in step 1. Remember, upload the app_cert.pem file!</p>
+    <p>You should go back to the Website Payment Certificates page and your new Public Certificate will be listed. Copy the Cert ID for the newly uploaded certificate. We will use this in step 3.</p>
+
+    <h4>3. Modify your config/paypal.yml file</h4>
+    <p>Open your RAILS_ROOT/config/paypal.yml file and find the paypal_cert_id entry under production. Replace it with the Cert ID you copied in step 2.</p>
+    <p>Here is an example from paypal.yml:</p>
+    <pre>production:
+paypal_email: example@blahblah.com
+paypal_secret: blahblahblah
+paypal_cert_id: [replace this]
+paypal_url: https://www.paypal.com/cgi-bin/webscr
+paypal_currency: AUD</pre>
+
+    <h4>4. Restart rails</h4>
+    <p>You will need to restart rails so the modifications made in step 3 will be loaded.</p>
+    <p>The following command will restart Passenger:</p>
+    <pre>RAILS_ROOT$ touch tmp/restart.txt</pre>
+
+    <h4>Extra notes</h4>
+    <p>If you are running capistrano to deploy your app into production make sure you modify the correct files so that subsequent deployments use the correct app_certs.pem and paypal.yml files. Typically you will want to modify the files in your shared/certs and shared/config directories as the latest production release will have symbolic links pointing to them.</p>
+</section>
+
+

@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Rails RESTful Routes";
+    Page.Meta_Description = "The seven default routes for all controllers in Rails.";
+}
+
+<section id="page_title">
+    
+    <div class="page-header">
+        <h2>@Page.Title <small>2011.11.16</small></h2>
+    </div>
+</section>
+
+<section id="page_content">
+    <p>Here are the seven default routes for all controllers in Rails. For that matter pretty much any framework that adheres to REST.</p>
+    
+        <table class="table table-striped table-bordered table-condensed">
+<tbody><tr>
+<th>HTTP<br>request</th>
+<th>URL</th>
+<th>Action</th>
+<th>Named Route</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>GET</td>
+<td>/users</td>
+<td>index</td>
+<td>users_path</td>
+<td>page to list all users</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/users/1</td>
+<td>show</td>
+<td>user_path(1)</td>
+<td>page to show user with id 1</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/users/new</td>
+<td>new</td>
+<td>new_user_path</td>
+<td>page to make a new user (signup)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/users</td>
+<td>create</td>
+<td>users_path</td>
+<td>create a new user</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/users/1/edit</td>
+<td>edit</td>
+<td>edit_user_path(1)</td>
+<td>page to edit user with id 1</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/users/1</td>
+<td>update</td>
+<td>user_path(1)</td>
+<td>update user with id 1</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/users/1</td>
+<td>destroy</td>
+<td>user_path(1)</td>
+<td>delete user with id 1</td>
+</tr>
+</tbody></table>
+
+</section>
+
+
