@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "BlogMatrix";
+    Page.Meta_Description = "Information on my very simple blog engine called BlogMatrix";
+}
+
+<section id="page_title">
+    
+    <div class="page-header">
+        <h2>@Page.Title <small>my very simple blog engine</small></h2>
+    </div>
+</section>
+
+<section id="page_content">
+    <p>I've always wanted to create my own blog engine purely for the heck of it and the geek factor. Over the years I wrote various little attempts
+    with varying success but in the end I always lost steam because I was trying to replicate WordPress whilst learning the 'latest and greatest programming language'.</p>
+
+    <p>In the end I sat down and tried to figure out what was the bare minimum blog engine I could come up with and what were the goals.  
+        I eventually settled on the following:</p>
+    <ol>
+        <li>Can be hosted for free</li>
+        <li>Uses git for deployment</li>
+        <li>No database</li>
+        <li>Scrap bloated development frameworks ie. ASP.NET MVC, Rails </li>
+        <li>Has mechanism for layouts and includes</li>
+        <li>Responsive design</li>
+        
+        
+    </ol>
+
+    <p>The solution I came up with was <b><a href="https://github.com/kestrelblackmore/BlogMatrix">BlogMatrix which you can view on GitHub</a></b>. How simple is it you ask? Well here are the solutions I came across
+        for each of the goals above.</p>
+
+    <h4>1. Can be hosted for free<br>2. Uses git for deployment<br>3. No database</h4>
+    <p><b>Solution:</b> <a href="http://pages.github.com/" target="_blank">GitHub Pages</a>. By now I'm hoping you've heard of GitHub and are using it for hosting your projects. 
+    What some people don't realise is that you can also use it for simple html hosting. <a href="http://pages.github.com/" target="_blank">Instructions on how to set this up are here</a>.</p>
+
+    <p>Obviously with it being hosted by GitHub they would allow you to deploy using git which they do.</p>
+
+    <p>Likewise the whole site is pure html so there is no database.</p>
+
+    <h4>4. Scrap bloated development frameworks ie. ASP.NET MVC, Rails<br>5. Has mechanism for layouts and includes</h4>
+    <p><b>Solution:</b> WebMatrix. WebMatrix is a very simple development environment which is simplar in concept to PHP and classic ASP. 
+        It provides some of the power of ASP.NET MVC (razor view engine, layouts etc) without the added bloat. <a href="http://tekpub.com/blogs/tekpub-free-bin/tagged/hacking-webmatrix">Here's an excellent tutorial series by Rob Conery at TekPub</a>.</p>
+
+    <h4>6. Responsive design</h4>
+    <p><b>Solution:</b> <a href="http://twitter.github.io/bootstrap/">Twitter Boostrap</a> with <a href="http://talkslab.github.io/metro-bootstrap/">Metro-Bootstrap Theme</a></b>.
+    This was a no brainer. Twitter Bootstrap is an excellent HTML/CSS/jQuery framework with all the bells in whistles. It has built in support for
+        creating responsive design websites. I used the Metro-Bootstrap theme because I liked the look of it and flat design is 'hot right now'.
+    </p>
+
+
+</section>
+
+
