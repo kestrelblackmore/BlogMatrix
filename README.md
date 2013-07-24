@@ -1,4 +1,13 @@
-BlogMatrix
-==========
+# BlogMatrix
 
-My very simple 'blog engine'
+BlogMatrix is a very simple blog engine that I created. There's no database, just pure HTML, CSS and jQuery. [You can read more about BlogMatrix here.](http://kestrelblackmore.github.io/projects/blogmatrix)
+
+#### Technology:
+
+- WebMatrix
+- GitHub Pages
+- Twitter Bootstrap
+- wget
+
+
+
