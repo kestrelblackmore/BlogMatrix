@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+    Page.Title = "BlogMatrix - A Brief Overview";
+    Page.Meta_Description = "The actual project structure for my blog engine called BlogMatrix";
+    Page.ShowComments = true;
+
+    string snippet_404 = @"
+@{
+    Layout = '~/layouts/_SiteLayout.cshtml';
+    Page.Title = 'Page Not Found';
+}
+
+<section id='page_title'>
+    <div class='page-header'>
+        <h1>404 <small>@Page.Title</small></h1>
+    </div>
+</section>
+
+<section id='page_content'>
+    <p>Sorry but the page you are looking for can't be found!</p>
+    <p>Please try one of the links in the menu.</p>
+</section>
+    ";
+
+    string snippet_sitelayout = @"
+@{
+}
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>@Page.Title &middot; Kestrel Blackmore</title>
+    ";
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    @RenderPage("/partials/_BlogMatrixSeries.cshtml")
+
+    <p class="lead">BlogMatrix uses WebMatrix as the development environment (hence the word Matrix in my blog engine name). WebMatrix is a great little web development tool for creating websites that use
+    the Razor view engine and C#. Unlike most frameworks you can pretty much come up with whatever project structure you want. Let's take a 10,000 foot view of what I did.</p>
+    
+    <p>My goal here was to come up with a simple, logical project structure with the minimal amount of coding required. Drawing on my experience with RoR and various other conventions I'd adopted over the
+        years this is what I came up with. </p>
+
+    <h3>File / Directory Structure</h3>
+    <p>Firstly let me show you the file/directory structure of my projects:</p>
+
+    <pre>
+assets/
+blog/
+layouts/
+layouts/_BlogLayout.cshtml
+layouts/_SiteLayout.cshtml
+partials/
+partials/_Archives.cshtml
+partials/_Disqus.cshtml
+projects/
+projects/blogmatrix.cshtml
+404.cshtml
+about.cshtml
+archives.cshtml
+index.cshtml
+    </pre>
+
+    <p>As you can see the structure is very simple, logical and self documenting. Due to the way I have structure the project most of my time is spent in the blog directory.</p>
+    
+    <ul>
+        <li>The <em>assets</em> directory is for all of my CSS and Javascripts.</li>
+        <li>The <em>blog</em> directory contains an individual cshtml file for each post.</li> 
+        <li>The <em>layouts</em> directory is for the templates which are used to define the layout of all the pages.</li> 
+        <li>The <em>partials</em> directory is used for snippets that will get included in other pages.</li> 
+        <li>The <em>projects</em> directory is just a logical grouping for my various projects.</li> 
+        <li>Finally the <em>root</em> directory contains cshtml files that are pretty self explanatory :)</li>
+    </ul>
+
+    <h3>Razor Pages</h3>
+
+    <p>Let's have a look at the 404.cshtml file so you can see exactly how a Razor Page work.</p>
+
+    <pre class="prettyprint">
+    @snippet_404
+    </pre>
+
+    <p>This is a very simple razor page and I really want to focus on the section at the top in between the <code>@@{}</code> symbols.</p>
+
+    <p>The use of <code>@@{}</code> tells razor that you are defining a block of code to be processed. Within it there are two assignment declarations:</p>
+    <ol>
+        <li><code>Layout = '~/layouts/_SiteLayout.cshtml';</code></li>
+        <li><code>Page.Title = 'Page Not Found';</code></li>
+    </ol>
+
+    <p>The first line is telling razor what to use as the <em>layout/template</em> for this page. <code>Layout</code> is a builtin razor variable specifically for this purpose.</p>
+
+    <p>The second line sets up a dynamic property on the <code>Page</code> object (this is another builtin razor variable) called <code>Title</code>. This is then used on the 7th line (h1 tag) and is also 
+        used in the <em>~/layouts/_SiteLayout.cshtml</em> to set the title tag. If you <a href="404" target="_blank">goto the 404 page</a> you will see what I mean.</p>
+    
+    <p>Here's the first few lines of the <em>~/layouts/_SiteLayout.cshtml</em> file so you can see how <code>@@Page.Title</code> is used.</p>
+
+    <pre class="prettyprint">
+    @snippet_sitelayout
+    </pre>
+
+    <h3>Conclusion</h3>
+    <p>That's a very quick overview of the project structure and how a razor page works. 
+        If you view the <a href="https://github.com/kestrelblackmore/BlogMatrix" target="_blank">BlogMatrix GitHub repository</a> you'll very quickly figure out how it all ties together and the simplicity of my 'blog engine'.</p>
+    <p>Next post I'll be looking at how I actually deploy the website to pure HTML.</p>
+    <p>Happy coding!</p>
+
+</section>
+
+
