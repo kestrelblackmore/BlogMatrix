@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+    Page.Title = "jQuery DatePicker with MVC4 and dd/MM/yyyy format";
+    Page.Meta_Description = "How to get the jQuery DatePicker to work with the dd/MM/yyyy format in MVC4";
+    Page.ShowComments = true;
+
+    string snippet_view = @"
+<div class='editor-label'>
+    @Html.LabelFor(model => model.StartDate)
+</div>
+<div class='editor-field'>
+    @Html.EditorFor(model => model.StartDate)
+    @Html.ValidationMessageFor(model => model.StartDate)
+</div>";
+
+    string snippet_editortemplate = @"
+@model DateTime?
+@{
+    var value = '';
+    if (Model.HasValue) {
+        value = String.Format('{0:d}', Model.Value.ToString('dd/MM/yyyy'));
+    }
+}
+@Html.TextBox('', value, new { @class = 'datefield', type = 'text' })";
+}
+
+<section id="page_title">
+    
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    <p class="lead">Are you trying to get the jQuery DatePicker to use the dd/MM/yyyy format in MVC4 but having no luck? Me too. I wasted hours on this! Luckily for you I have the solution below :)</p>
+
+    <h3>Setting up the Model</h3>
+    <p>Add a DataAnnotation to your date field and also add the namespace reference at the top of you class: <code>using System.ComponentModel.DataAnnotations;</code></p>
+    <pre class="prettyprint">
+[DataType(DataType.Date)]
+public DateTime StartDate { get; set; }</pre>
+    <p></p>
+
+    <h3>Setting up the View</h3>
+    <p>More likely than not MVC should have scaffolded this correctly for you but for completeness your view should look like the following. The important part is the <em>EditorFor</em> line.</p>
+    <pre class="prettyprint">@snippet_view</pre>
+
+    <h3>Setting up a custom EditorTemplate</h3>
+    <p>Now create a new folder called /Views/Shared/EditorTemplates and a new razor file called Date.cshtml within it. Add the following code to Date.cshtml:</p>
+    <pre class="prettyprint">@snippet_editortemplate</pre>
+    <p>We are doing a number of things here.</p>
+    <ol>
+        <li>making sure we can handle null values with <code>Model.HasValue</code> check.</li>
+        <li>defaulting the display date in the textbox to dd/MM/yyyy.</li>
+        <li>overriding the textbox type from 'date' to 'text'. This disables the HTML5 date textbox which is in my opinion ghastly as each browser renders it differently.</li>
+    </ol>
+
+    <h3>Adding jQuery DatePicker</h3>
+    <p>Make sure you have includes for jquery-ui{version-no}.js and jquery.ui.datepicker.css. By default MVC4 should have already included these for you.</p>
+    <p>Also create your own javascript file to contain the specifics that we want to do with the jQuery date picker. I created the file <em>~/Scripts/datepicker.js</em> and add the following:</p>
+    <pre class="prettyprint">
+$(function () {
+    $(".datefield").datepicker({ dateFormat: 'dd/mm/yy', changeYear: true });
+});
+</pre>
+    <p>The <code>$(".datefield")</code> selector matches the class we assigned our custom Date EditorTemplate. So now any textbox with a class of "datefield" will have a jQuery DatePicker attached to it. In our case 
+        that is any field that has been adorned with the <code>[DataType(DataType.Date)]</code> data annotation. Nice!</p>
+    <p>We are also telling jQuery to use the day/month/year date format to fill our textbox with.</p>
+    <p>Unfortunately whilst this all works nicely as soon as a user moves away from the textbox jQuery fires a validation error
+        because it is not taking into account localization so assumes we are using US dates! What to do!? Well onto the secret sauce :)</p>
+    <h3>The Secret Sauce</h3>
+    <p>I found <a href="http://stackoverflow.com/questions/12053022/mvc-datetime-validation-uk-date-format/">this solution</a> on stackoverflow which was a perfect workaround for the localization issue.</p>
+
+    <p>To work in with our solution change <em>~/Scripts/datepicker.js</em> to the following:</p>
+<pre class="prettyprint">
+$(function () {
+    $.validator.addMethod('date',
+    function (value, element) {
+        if (this.optional(element)) {
+            return true;
+        }
+        var ok = true;
+        try {
+            $.datepicker.parseDate('dd/mm/yy', value);
+        }
+        catch (err) {
+            ok = false;
+        }
+        return ok;
+    });
+    $(".datefield").datepicker({ dateFormat: 'dd/mm/yy', changeYear: true });
+});</pre>
+
+    <p>This overrides the default way that jQuery will parse a date (mm/dd/yy) to dd/mm/yy. If you try now the jQuery validation should accept the dd/mm/yyyy format and it should save to the database correctly. Awesome!</p>
+
+    
+</section>
+
+
