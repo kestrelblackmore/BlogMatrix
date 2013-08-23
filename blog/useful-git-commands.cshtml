@@ -60,6 +60,13 @@ git push origin :[branch]</pre>
 
     <h4>Undo last commit and also unstage files</h4>
 <pre>git reset HEAD~1</pre>
+
+    <h4>Completely remove file from git history</h4>
+<pre>git filter-branch --force --index-filter \ 
+'git rm --cached --ignore-unmatch [file_name] l' \ 
+--prune-empty --tag-name-filter cat -- --all
+
+git push origin master --force</pre>
     
 </section>
 
