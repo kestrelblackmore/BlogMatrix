@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+    Page.Title = "Useful Git Commands Everyone Should Know";
+    Page.Meta_Description = "Useful git commands that everyone should know";
+    Page.ShowComments = true;
+
+    string snippet_view = @"
+<div class='editor-label'>
+    @Html.LabelFor(model => model.StartDate)
+</div>
+<div class='editor-field'>
+    @Html.EditorFor(model => model.StartDate)
+    @Html.ValidationMessageFor(model => model.StartDate)
+</div>";
+
+    string snippet_editortemplate = @"
+@model DateTime?
+@{
+    var value = '';
+    if (Model.HasValue) {
+        value = String.Format('{0:d}', Model.Value.ToString('dd/MM/yyyy'));
+    }
+}
+@Html.TextBox('', value, new { @class = 'datefield', type = 'text' })";
+}
+
+<section id="page_title">
+    
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    <p class="lead">Git is amazing, I love it. Sometimes though I forget the various commands to do things. Come one admit it... you do too :) Anyway here's my list of useful git commands. Enjoy!</p>
+
+    <h4>Reset local branch to origin branch</h4>
+<pre>git fetch origin
+git reset --hard origin/[branch]</pre>
+
+    <h4>Amend last committed message</h4>
+<pre>git commit --amend -m "New commit message"</pre>
+
+    <h4>Amend specific commit</h4>
+<pre>git rebase [commit_hash] --interactive</pre>
+
+    <h4>Amend multiple commits</h4>
+<pre>git rebase -i HEAD~3
+* ~3 means 3 commits</pre>
+
+    <h4>Delete local and remote branch</h4>
+<pre>git branch -d [branch]
+git push origin :[branch]</pre>
+
+    <h4>Abort pull</h4>
+<pre>git reset --hard ORIG_HEAD</pre>
+
+    <h4>Abort merge</h4>
+<pre>git merge --abort</pre>
+    
+</section>
+
+
