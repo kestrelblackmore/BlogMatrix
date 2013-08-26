@@ -4,17 +4,7 @@
 
 @RenderBody()
 
-<div class="row">
-    <div class="span10"><hr></div>
-</div>
-
-@if(Page.ShowSocialMedia == true) {
-    @RenderPage("/partials/_SocialMedia.cshtml")
-}
-
-<div class="row">
-    <div class="span10"><hr></div>
-</div>
+@RenderPage("/partials/_SocialMedia.cshtml")
 
 @if(Page.ShowComments == true) {
     @RenderPage("/partials/_Disqus.cshtml")
