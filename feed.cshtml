@@ -1,0 +1,19 @@
+﻿@using System.ServiceModel.Syndication
+@using System.Xml
+
+@{
+   
+    var feedWriter = XmlWriter.Create(Response.OutputStream);
+
+    Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(RssSyndicator.GetFeed(HttpContext.Current));
+    rssFormatter.WriteTo(feedWriter);
+
+    Response.ContentType = "application/rss+xml";
+
+    feedWriter.Close();
+}
+
+
+
+
+
