@@ -1,4 +1,5 @@
 ﻿@{
+    // 00007.json
     Layout = "~/layouts/_BlogLayout.cshtml";
     Page.Title = "BlogMatrix - The Deployment Process";
     Page.Meta_Description = "The actual project structure for my blog engine called BlogMatrix";
@@ -42,21 +43,21 @@
 <section id="page_content">
     @RenderPage("/partials/_BlogMatrixSeries.cshtml")
 
-    <p class="lead">My number one priority when creating my own blog engine was that I wanted to host it for free whilst having my own custom domain name. 
+    <p class='lead'>My number one priority when creating my own blog engine was that I wanted to host it for free whilst having my own custom domain name. 
         This immediately limited the hosting providers I could use and likewise reduced the programming languages I could develop in.</p>
     
     <p>All your big cloud hosting providers like Windows Azure, Amazon Web Services and Heroku were immediately scrapped as they charge for a custom domain name. 
         This also meant that programming languages such as ASP.NET MVC, Ruby on Rails or Node were not an option.</p>
-    <p>It was for these reasons that I decided I would need my blog to generate pure HTML like <a href="http://jekyllrb.com" target="_blank">Jekyll</a>. Then worse case scenario I'd just find the cheapest hosting provider. That
-        was when I remembered something about <a href="http://pages.github.com/" target="_blank">GitHub Pages</a> and came across one of their help articles on 
-        <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages" target="_blank">setting up custom domain names</a>. 
+    <p>It was for these reasons that I decided I would need my blog to generate pure HTML like <a href='http://jekyllrb.com' target='_blank'>Jekyll</a>. Then worse case scenario I'd just find the cheapest hosting provider. That
+        was when I remembered something about <a href='http://pages.github.com/' target='_blank'>GitHub Pages</a> and came across one of their help articles on 
+        <a href='https://help.github.com/articles/setting-up-a-custom-domain-with-pages' target='_blank'>setting up custom domain names</a>. 
     Free HTML hosting solved!</p>
 
     <h3>Generating Pure HTML</h3>
     <p>Next I had to consider how I'd convert my blog from being a local dynamic website into pure HTML files so I could host with GitHub Pages. I turned to my trusty friend google and started investigating
     how to generate razor pages is HTML.</p>
 
-    <p>An article that most caught my eye was by Phil Haack titled <a href="http://haacked.com/archive/2011/08/01/text-templating-using-razor-the-easy-way.aspx" target="_blank">Text templating using Razor the easy way</a>. I read
+    <p>An article that most caught my eye was by Phil Haack titled <a href='http://haacked.com/archive/2011/08/01/text-templating-using-razor-the-easy-way.aspx' target='_blank'>Text templating using Razor the easy way</a>. I read
     through the article and some of the other links mentioned and was quite excited. There were a couple of negatives though:</p>
 
     <ul>
@@ -66,7 +67,7 @@
 
     <p>It was at this stage that I sat back, reassessed what I was trying to achieve and <strong>had a light bulb moment!</strong> All I needed to do was spider my local development website!</p>
 
-    <p>Of course in true unix fashion there is already such a tool that will spider a website: <code>wget</code>. So after reading the <a href="http://www.gnu.org/software/wget/manual/wget.html" target="_blank">man pages</a>
+    <p>Of course in true unix fashion there is already such a tool that will spider a website: <code>wget</code>. So after reading the <a href='http://www.gnu.org/software/wget/manual/wget.html' target='_blank'>man pages</a>
         and downloading wget onto my windows machine I used the following commands to completely spider and convert my website into pure HTML:</p>
 
     <p>
@@ -75,7 +76,7 @@
             wget -q http://localhost:56577/404 -O 404.html
         </code></p>
 
-    <p>I placed these in a shell script and bam! Instant pure HTML generation! From here it is a simple matter to do a <code>git commit</code> and <code>git push</code> to update my GitHub Pages repository (<a href="http://github.com/kestrelblackmore/kestrelblackmore.github.io" target="_blank">view here</a>).</p>
+    <p>I placed these in a shell script and bam! Instant pure HTML generation! From here it is a simple matter to do a <code>git commit</code> and <code>git push</code> to update my GitHub Pages repository (<a href='http://github.com/kestrelblackmore/kestrelblackmore.github.io' target='_blank'>view here</a>).</p>
 
 </section>
 

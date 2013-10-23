@@ -1,0 +1,11 @@
+{
+    title: "BlogMatrix - A Brief Overview",
+    publish_date: "2013-07-25",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/blogmatrix-brief-overview"},
+    summary: 
+"
+    <p class='lead'>BlogMatrix uses WebMatrix as the development environment (hence the word Matrix in my blog engine name). WebMatrix is a great little web development tool for creating websites that use
+    the Razor view engine and C#. Unlike most frameworks you can pretty much come up with whatever project structure you want. Let's take a 10,000 foot view of what I did.</p>
+"
+}

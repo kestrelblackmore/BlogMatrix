@@ -1,0 +1,11 @@
+{
+    title: "Rails and PayPal Certificate Expiration",
+    publish_date: "2012-11-01",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/rails-paypal-certificate-expiration"},
+    summary: 
+"
+<p class='lead'>On <a href='http://railscasts.com' target='_blank'>railscasts.com</a> episodes #141 to #143 Ryan went through how to setup online credit card payments via Paypal and IPN. Worked like a treat after a few late nights and some modifications.
+If several years down the track you find the public key you provided Paypal has expired,  do the following.</p>
+"
+}

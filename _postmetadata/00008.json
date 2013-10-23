@@ -1,0 +1,10 @@
+{
+    title: "jQuery DatePicker with MVC4 and dd/MM/yyyy format",
+    publish_date: "2013-07-31",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/jquery-datepicker-mvc4"},
+    summary: 
+"
+<p class='lead'>Are you trying to get the jQuery DatePicker to use the dd/MM/yyyy format in MVC4 but having no luck? Me too. I wasted hours on this! Luckily for you I have the solution below :)</p>
+"
+}

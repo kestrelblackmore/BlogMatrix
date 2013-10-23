@@ -3,9 +3,12 @@
 
 @{
    
+    // http://dotnetslackers.com/articles/aspnet/How-to-create-a-syndication-feed-for-your-website.aspx#retrieving-the-most-recently-published-items
     var feedWriter = XmlWriter.Create(Response.OutputStream);
 
-    Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(RssSyndicator.GetFeed(HttpContext.Current));
+    var metaData = PostMetaData.LoadPostMetaData(Server.MapPath("~/_postmetadata"));
+
+    Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(RssSyndicator.GetFeed(metaData));
     rssFormatter.WriteTo(feedWriter);
 
     Response.ContentType = "application/rss+xml";

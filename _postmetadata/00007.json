@@ -1,0 +1,11 @@
+{
+    title: "BlogMatrix - The Deployment Process",
+    publish_date: "2013-07-26",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/blogmatrix-deployment-process"},
+    summary: 
+"
+<p class='lead'>My number one priority when creating my own blog engine was that I wanted to host it for free whilst having my own custom domain name. 
+This immediately limited the hosting providers I could use and likewise reduced the programming languages I could develop in.</p>
+"
+}

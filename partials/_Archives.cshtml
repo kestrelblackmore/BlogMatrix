@@ -1,23 +1,14 @@
 @{
     var article_path ="/blog";
+    var postData = PostMetaData.LoadPostMetaData(Server.MapPath("~/_postmetadata"));
 }
 
 <section id="blog">
+
     <dl>
-
-        <dd><a href="@article_path/three-competing-goals-software-development">The three competing goals of software development</a></dd>
-        <dd><a href="@article_path/useful-git-commands">Useful git commands everyone should know</a></dd>
-        <dd><a href="@article_path/noah-kagan-majoran-distillery">Noah Kagan highlights from Majoran Distillery, Adelaide</a></dd>
-        <dd><a href="@article_path/jquery-datepicker-mvc4">jQuery DatePicker with MVC4 and dd/MM/yyyy format</a></dd>
-        <dd><a href="@article_path/blogmatrix-deployment-process">BlogMatrix - The deployment process</a></dd>
-        <dd><a href="@article_path/blogmatrix-brief-overview">BlogMatrix - A brief overview</a></dd>
-        <dd><a href="/projects/blogmatrix">BlogMatrix - A very simple blog engine</a></dd>
-        <dd><a href="@article_path/validate-email-address-using-regular-expressions">Validate email address using regular expressions</a></dd>
-        <dd><a href="@article_path/rails-paypal-certificate-expiration">Rails and PayPal certificate expiration</a></dd>
-        <dd><a href="@article_path/rails3-and-bundler">Rails 3 and bundler</a></dd>
-        <dd><a href="@article_path/rails-restful-routes">Rails RESTful routes</a></dd>
+    @foreach(var post in postData) {
+        <dd><a href="@post.Value.link.url">@post.Value.title</a></dd>
+    }
     </dl>
-
     
-   
 </section>

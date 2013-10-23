@@ -1,0 +1,22 @@
+{
+    title: "Rails 3 and Bundler",
+    publish_date: "2012-10-04",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/rails3-and-bundler"},
+    summary: 
+"
+<p class='lead'>Some useful bundler commands in Rails 3.</p>
+<p>
+    <pre>
+        gem install bundler #installs bundler
+        bundle install #reads gem list from Gemfile and installs them
+        bundle check #check gem list from Gemfile and sees if any aren't installed yet
+        bundle help #lists available commands
+        bundle install --without=test #like install but ignores test env gems
+        bundle lock #freezes gems to current versions
+        bundle install --relock #unlock gems, update and lock again
+        bundle pack #installs gems locally to vendor/cache
+    </pre>
+</p>
+"
+}

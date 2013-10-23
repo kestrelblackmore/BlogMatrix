@@ -1,0 +1,12 @@
+{
+    title: "The Three Competing Goals of Software Development",
+    publish_date: "2013-09-16",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/three-competing-goals-software-development"},
+    summary: 
+"
+<p class='lead'>Developing software is a rather complex task. Ask any developer. It's made even harder by the three competing goals of software development: Time, Money and Features.</p>
+<p>In an ideal world every software development project would be delivered on time, within budget and with all the features originally requested. Unfortunately this is very rarely the case.</p>
+<p>Developers know that delivering the holy trifecta of time, money and features all at the same time is <span style='text-decoration: line-through;'>hard</span> impossible. Why is this? The answer is simple. <strong>All three of these goals compete against each other.</strong></p>
+"
+}
