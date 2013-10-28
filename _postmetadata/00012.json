@@ -6,7 +6,7 @@
     summary: 
 "
 Up to this point my blog engine has been working quite nicely; however, it does lack one key feature: an RSS feed. 
-Without support for RSS people will have to continually come back to my website to check for new posts. That's not likely to occur :( 
+Without support for RSS, people will have to continually come back to my website to check for new posts. That's not likely to occur :( 
 So let's fix this and get an RSS feed up and running!
 "
 }
