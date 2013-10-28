@@ -1,0 +1,119 @@
+﻿@{
+    // 00012.json
+    Layout = "~/layouts/_BlogLayout.cshtml";
+    Page.Title = "BlogMatrix - Creating the RSS Feed";
+    Page.Meta_Description = "Creating the RSS Feed using C# for my blog engine BlogMatrix";
+    Page.ShowComments = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>BlogMatrix <small>creating the rss feed</small></h2>
+    </div>
+</section>
+
+<section id="page_content">
+    @RenderPage("/partials/_BlogMatrixSeries.cshtml")
+
+    <p class='lead'>Up to this point my blog engine has been working quite nicely; however, it does lack one key feature: an RSS feed. 
+        Without support for RSS people will have to continually come back to my website to check for new posts. That's not likely to occur :( 
+        So let's fix this and get an RSS feed up and running!
+    </p>
+    
+    <p>RSS is widely known as <em>Really Simple Syndication</em> and is a standardised format that allows publishers (blog owners) to syndicate data (posts) automatically.</p>
+
+    <p>Think of it like this. There are two basic ways I can get the latest newspaper: go to the local newsagent or get it delivered to my house. RSS is the equivalent of getting the newspaper delivered to my house. It gets 'syndicated' to me whenever the latest copy is available.</p>
+
+    <p>There are a number of standardised formats for an RSS feed but at their most basic level they are an XML file. Knowing this means we have a number of options available for constructing ourfeed.</p>
+
+    <h3>Option 1. Manually Construct</h3>
+    <p>Because it's XML we could just concatenate together a bunch of strings wrapping them in the correct XML tags.</p>
+    <p>If you head over to the <a href="http://www.rssboard.org/rss-2-0">rss advisory board</a> you can read through the RSS 2.0 specification. There you will find the structure for the XML file and its elements. Then it's just a matter of concatenating strings of data and XML together.</p>
+    <p>It doesn't take a rocket scientist to know that this will get messy very quickly and is susceptible to bugs! So for obvious reasons we will not use this method.</p>
+
+    <h3>Option 2. Serialize a Class Model</h3>
+    <p>Seeing as we have the <a href="http://www.rssboard.org/rss-2-0">RSS 2.0 specification</a> we could create our own class model. Then it'd just be a matter of serializing to XML and bingo, it's done! 
+       However once again this requires creating a lot of infrastructure code and processes.</p>
+    <p>There has to be an easier way!</p>
+
+    <h3>Option 3. Use the System.ServiceModel.Syndication namespace</h3>
+    <p>As luck would have it there is! Check out the<a href="http://msdn.microsoft.com/en-us/library/system.servicemodel.syndication(v=vs.110).aspx">System.ServiceModel.Syndication namespace</a> in .NET. The classes of particular interest are: <code>SyndicationFeed</code>, <code>SyndicationLink</code> and <code>SyndicationItem</code>.</p>
+        <ul>
+            <li><code>SyndicationFeed</code> provides information about your blog.</li>
+            <li><code>SyndicationLink</code> provides information about links.</li> 
+            <li><code>SyndicationItem</code> provides information about blog posts.</li>
+        </ul>
+    </p>
+    <p>Here's a quick and dirty example using my blog. <a href="https://github.com/kestrelblackmore/BlogMatrix/blob/master/App_Code/RssSyndicator.cs">View the github page</a> to see the proper class.</p>
+
+<pre class="prettyprint">
+ var feed = new SyndicationFeed();
+
+// Add basic blog information
+feed.Id = pbaseUrl;
+feed.Title = new TextSyndicationContent("Kestrel Blackmore Blog");
+feed.Description = new TextSyndicationContent("Hi, I'm Kestrel. I've been a software developer now for 10+ years and I love it!");
+feed.Copyright = new TextSyndicationContent("Kestrel Blackmore");
+feed.LastUpdatedTime = new DateTimeOffset(DateTime.Now);
+feed.Generator = "BlogMatrix 1.0";
+feed.ImageUrl = new Uri(pbaseUrl + "/assets/img/blackmore_logo.png");
+
+// Add the URL that will link to your published feed when it's done
+SyndicationLink link = new SyndicationLink(new Uri(pbaseUrl + "/feed.xml"));
+link.RelationshipType = "self";
+link.MediaType = "text/html";
+link.Title = "Kestrel Blackmore Feed";
+feed.Links.Add(link);
+
+// Add your site link
+link = new SyndicationLink(new Uri(pbaseUrl));
+link.MediaType = "text/html";
+link.Title = "Kestrel Blackmore Blog";
+feed.Links.Add(link);
+
+// get blog posts
+var items = new List<SyndicationItem>();
+
+foreach(var post in myPosts) {
+    var item = new SyndicationItem();
+    item.Title = TextSyndicationContent.CreatePlaintextContent(post.Value.title);
+    item.Links.Add(SyndicationLink.CreateAlternateLink(new Uri(pbaseUrl + post.Value.link.url)));
+    item.Summary = TextSyndicationContent.CreateHtmlContent(post.Value.summary);
+    var date = DateTime.Parse(post.Value.publish_date);
+    item.PublishDate = new DateTimeOffset(date);
+    item.Authors.Add(new SyndicationPerson(post.Value.author.email, post.Value.author.name, post.Value.author.url));
+    items.Add(item);
+}
+
+feed.Items = items;
+</pre>
+
+    <p>The above will create the required objects for an RSS feed. Now we need an endpoint so the feed can be consumed.</p>
+
+<h3>Creating the RSS endpoint</h3>
+<p>To do this it is as simple as writing some XML to Response.Output.</p>
+<p>Here's the code (Remember I'm using WebMatrix with Razor Pages so YMMV):</p>
+<pre class="prettyprint">
+var feedWriter = XmlWriter.Create(Response.OutputStream);
+
+// feed object is from previous code example
+Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(feed);
+rssFormatter.WriteTo(feedWriter);
+
+Response.ContentType = "application/rss+xml";
+
+feedWriter.Close();
+</pre>
+    <p>Note the use of the <code>Rss20FeedFormatter</code> class?  We could have used an <code>Atom10FeedFormatter</code> instead. Check out the <a href="http://msdn.microsoft.com/en-us/library/system.servicemodel.syndication(v=vs.110).aspx">System.ServiceModel.Syndication namespace</a> for more formatter options.</p>
+
+    <h3>Conclusion</h3>
+    <p>Creating an RSS feed with C# is pretty darn easy! To see the full code listing view my <a href="https://github.com/kestrelblackmore/BlogMatrix">BloxMatrix github repository</a> and check out the code in:</p>
+<pre>
+App_Code\RssSyndicator.cs
+feed.cshtml
+</pre>
+<p>Next post I'll be looking at how I get the blog post information (I don't use a database for my blog engine) for my RSS feed and how I used this to also refactor my Home and Archives pages.</p>
+  
+</section>
+
+
