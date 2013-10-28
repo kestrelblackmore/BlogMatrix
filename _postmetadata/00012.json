@@ -1,6 +1,6 @@
 {
     title: "BlogMatrix - Creating an RSS Feed with C#",
-    publish_date: "2013-10-24",
+    publish_date: "2013-10-28",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/blogmatrix-creating-rss-feed"},
     summary: 
