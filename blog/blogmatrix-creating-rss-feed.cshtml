@@ -1,14 +1,14 @@
 ﻿@{
     // 00012.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "BlogMatrix - Creating the RSS Feed";
+    Page.Title = "BlogMatrix - Creating an RSS Feed with C#";
     Page.Meta_Description = "Creating the RSS Feed using C# for my blog engine BlogMatrix";
     Page.ShowComments = true;
 }
 
 <section id="page_title">
     <div class="page-header">
-        <h2>BlogMatrix <small>creating the rss feed</small></h2>
+        <h2>BlogMatrix <small>creating an rss feed with C#</small></h2>
     </div>
 </section>
 
@@ -91,7 +91,7 @@ feed.Items = items;
     <p>The above will create the required objects for an RSS feed. Now we need an endpoint so the feed can be consumed.</p>
 
 <h3>Creating the RSS endpoint</h3>
-<p>To do this it is as simple as writing some XML to Response.Output.</p>
+<p>Creating the endpoint is as simple as writing some XML to Response.Output and setting the relevant Response.ContentType.</p>
 <p>Here's the code (Remember I'm using WebMatrix with Razor Pages so YMMV):</p>
 <pre class="prettyprint">
 var feedWriter = XmlWriter.Create(Response.OutputStream);
