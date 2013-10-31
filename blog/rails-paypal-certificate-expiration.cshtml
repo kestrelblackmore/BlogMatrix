@@ -1,8 +1,11 @@
 ﻿@{
-    // 00003.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "Rails and PayPal Certificate Expiration";
-    Page.Meta_Description = "What to do when the public key you provided PayPal expires.";
+
+    // 00003.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00003.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
 }
 
 <section id="page_title">

@@ -1,8 +1,12 @@
 ﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";    
+    
     // 00008.json
-    Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "jQuery DatePicker with MVC4 and dd/MM/yyyy format";
-    Page.Meta_Description = "How to get the jQuery DatePicker to work with the dd/MM/yyyy format in MVC4";
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00008.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
 
     string snippet_view = @"

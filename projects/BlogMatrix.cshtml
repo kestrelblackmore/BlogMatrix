@@ -1,14 +1,18 @@
 ﻿@{
-    // 00005.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "BlogMatrix";
-    Page.Meta_Description = "Information on my very simple blog engine called BlogMatrix";
+
+    // 00005.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00005.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
 }
 
 <section id="page_title">
     <div class="page-header">
-        <h2>@Page.Title <small>a very simple blog engine</small></h2>
+        <h2>@Page.Title</h2>
     </div>
 </section>
 

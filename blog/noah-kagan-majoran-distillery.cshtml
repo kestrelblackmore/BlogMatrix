@@ -1,8 +1,12 @@
 ﻿@{
-    // 00009.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "Noah Kagan Highlights from Majoran Distillery, Adelaide";
-    Page.Meta_Description = "My notes from Noah Kagan's visit to Majoran Distillery in Adelaide, Australia.";
+
+    // 00009.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00009.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
     Page.ShowSocialMedia = true;
 }

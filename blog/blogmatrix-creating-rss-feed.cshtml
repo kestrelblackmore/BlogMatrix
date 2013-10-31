@@ -1,14 +1,18 @@
 ﻿@{
-    // 00012.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "BlogMatrix - Creating an RSS Feed with C#";
-    Page.Meta_Description = "Creating the RSS Feed using C# for my blog engine BlogMatrix";
+
+    // 00012.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00012.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
 }
 
 <section id="page_title">
     <div class="page-header">
-        <h2>BlogMatrix <small>creating an rss feed with C#</small></h2>
+        <h2>@Page.Title</h2>
     </div>
 </section>
 

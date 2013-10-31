@@ -1,8 +1,12 @@
 ﻿@{
-    // 00010.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "Useful Git Commands Everyone Should Know";
-    Page.Meta_Description = "Useful git commands that everyone should know";
+
+    // 00010.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00010.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
 
     string snippet_view = @"

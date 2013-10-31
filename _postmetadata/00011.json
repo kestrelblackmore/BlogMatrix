@@ -3,6 +3,7 @@
     publish_date: "2013-09-16",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/three-competing-goals-software-development"},
+    meta_description: "The three goals pillars of sofware development: time, money and features.",
     summary: 
 "
 <p class='lead'>Developing software is a rather complex task. Ask any developer. It's made even harder by the three competing goals of software development: Time, Money and Features.</p>

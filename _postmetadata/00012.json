@@ -1,8 +1,9 @@
 {
-    title: "BlogMatrix - Creating an RSS Feed with C#",
+    title: "BlogMatrix. Creating an RSS Feed with C#",
     publish_date: "2013-10-28",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/blogmatrix-creating-rss-feed"},
+    meta_description: "Creating the RSS Feed using C# for my blog engine BlogMatrix",
     summary: 
 "
 Up to this point my blog engine has been working quite nicely; however, it does lack one key feature: an RSS feed. 
