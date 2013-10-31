@@ -3,6 +3,7 @@
     publish_date: "2013-08-24",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/useful-git-commands"},
+    meta_description: "Useful git commands that everyone should know",
     summary: 
 "
 <p class='lead'>Git is amazing, I love it. Sometimes though I forget the various commands to do things. Come on admit it... you do too :) Anyway here's my list of useful git commands. Enjoy!</p>

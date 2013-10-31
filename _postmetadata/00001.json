@@ -3,6 +3,7 @@
     publish_date: "2012-09-02",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/rails-restful-routes"},
+    meta_description: "The seven default routes for all controllers in Rails.",
     summary: 
 "
 <p class='lead'>Here are the seven default routes for all controllers in Rails. Having said that pretty much every other RESTful framework adheres to these as well.</p>  

@@ -1,8 +1,9 @@
 {
-    title: "BlogMatrix - A Very Simple Blog Engine",
+    title: "BlogMatrix. A Very Simple Blog Engine",
     publish_date: "2013-07-23",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/projects/blogmatrix"},
+    meta_description: "Information on my very simple blog engine called BlogMatrix",
     summary: 
 "
 <p class='lead'>BlogMatrix is a very simple blog engine that I created. In fact the page you are reading right now was created with it. There's 

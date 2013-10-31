@@ -1,8 +1,12 @@
 ﻿@{
-    // 00011.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "The Three Competing Goals of Software Development";
-    Page.Meta_Description = "The three goals pillars of sofware development: time, money and features.";
+
+    // 00011.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00011.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
     Page.ShowComments = true;
     Page.ShowSocialMedia = true;
 }

@@ -1,8 +1,11 @@
 ﻿@{
-    // 00002.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "Rails 3 and Bundler";
-    Page.Meta_Description = "Some useful bundler commands in Rails 3.";
+    
+    // 00002.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00002.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
 }
 
 <section id="page_title">

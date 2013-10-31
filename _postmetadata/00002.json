@@ -3,6 +3,7 @@
     publish_date: "2012-10-04",
     author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
     link: { url: "/blog/rails3-and-bundler"},
+    meta_description: "Some useful bundler commands in Rails 3.",
     summary: 
 "
 <p class='lead'>Some useful bundler commands in Rails 3.</p>

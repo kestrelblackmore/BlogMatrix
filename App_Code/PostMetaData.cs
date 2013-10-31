@@ -8,7 +8,6 @@ using System.IO;
 /// </summary>
 public static class PostMetaData
 {
-
     public static SortedDictionary<string, dynamic> LoadPostMetaData(string pPostMetaDataPath) {
         var files  = new DirectoryInfo(pPostMetaDataPath).GetFiles();
         var result = new SortedDictionary<string, dynamic>(new ReverseComparer<string>(Comparer<string>.Default));

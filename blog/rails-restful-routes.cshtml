@@ -1,8 +1,11 @@
 ﻿@{
-    // 00001.json
     Layout = "~/layouts/_BlogLayout.cshtml";
-    Page.Title = "Rails RESTful Routes";
-    Page.Meta_Description = "The seven default routes for all controllers in Rails.";
+
+    // 00001.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00001.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
 }
 
 <section id="page_title">
