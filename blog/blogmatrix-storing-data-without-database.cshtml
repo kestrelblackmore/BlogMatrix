@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00013.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00013.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+
+    string snippet_archives = @"
+@{
+    var postData = PostMetaData.LoadPostMetaData(Server.MapPath('~/_postmetadata'));
+}
+<section id='blog'>
+    <dl>
+    @foreach(var post in postData) {
+        <dd><a href='@post.Value.link.url'>@post.Value.title</a></dd>
+    }
+    </dl>   
+</section>";
+}
+
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    @RenderPage("/partials/_BlogMatrixSeries.cshtml")
+
+    <p class='lead'>One of the key features of my blog is there is no database. This was a deliberate design decision. My blog had to be pure HTML/CSS and jQuery.
+        So then how do I store information that is needed to say, populate an rss feed? Good question my friend! Read on...
+    </p>
+    
+    <p>Up to this point I've had no need to store information as each 'page' or 'post' on my blog is a self contained entity. 
+        It only needs to know about itself.</p>
+
+    <p>However the need to populate an rss feed means that I now need to store some basic information about each blog post.</p>
+
+    <p>Still wanting to keep my no database ethos I decided to use the file system to store this information. I convert my website to pure HTML before deployment so using this method incurs no performance hit on the live site.</p>
+
+    <p>I could have gone with xml, used a flat file format or created a class structure and serialized it.<p>
+
+    <p>Instead I chose JSON.</p>
+
+    <h3>The wonder that is JSON</h3>
+
+    <p>Incase you've been living under a rock, JSON is now the defacto standard for transmitting human readable data objects consisting of key:value pairs.</p>
+
+    <p>It has been widely embraced and most of the major programming languages have native support for it. You can see its use in AJAX calls, Web Service APIs and there are even NOSQL databases (<a href="http://couchdb.apache.org/" target="_blank">CouchDB</a> and <a href="http://ravendb.net/" target="_blank">RavenDB</a> come to mind) that use it internally to store information.</p>
+
+    <p>The beautify of JSON is how data is represented.  Here's the JSON meta data file for this blog post:</p>
+
+<pre class="prettyprint">
+{
+    "title": "BlogMatrix. Storing Data Without a Database",
+    "publish_date": "2013-11-05",
+    "author": {
+        "name": "Kestrel Blackmore",
+        "url": "http://www.kestrelblackmore.com",
+        "email": "me@kestrelblackmore.com"
+    },
+    "link": {
+        "url": "/blog/blogmatrix-storing-data-without-database"
+    },
+    "meta_description": "How I store data without having a database for my blog engine BlogMatrix",
+    "summary": "One of the key features of my blog is there is no database. This was a deliberate design decision. My blog had to be pure HTML/CSS and jQuery. So then how do I store information that is needed to say, populate an rss feed? Good question my friend! Read on..."
+}
+</pre>
+
+    <p>It's a simple <code>"key":"value"</code> representation separated by a <code>,</code>. If you want a collection put the key/value pairs within <code>{}</code>.</p>
+
+    <p>This is not a full tutorial on JSON so you can read more on it <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">here</a>.</p>
+
+    <h3>The Master Plan</h3>
+    <p>Having decided to use flat files with JSON as the file format I came up with the following plan of attack:</p>
+    <ol>
+        <li>Create a JSON file for each blog post with the necessary meta data</li>
+        <li>Create a function that reads in all the JSON files</li>
+        <li>Use this information to populate the RSS feed</li>
+        <li>Use this information to populate the home and archives pages</li>
+        <li>Use this information to populate elements of the blog post page</li>
+    </ol>
+
+    <h4>Step 1. JSON file for each blog post</h4>
+    <p>I created a new directory, in the root of the project, called <code>_postmetadata</code> to store all of the JSON files. I then created a JSON file for every blog post and 
+    populated it with the necessary meta data information</p>
+    <p>I gave an example of the format for the JSON file above.</p>
+
+    <h4>Step 2. Function to read in JSON files</h4>
+    <p>I created a static class <code>PostMetaData</code> that would read in all of the JSON files, sort them in reverse publish date order and return a bunch of <code>dynamic</code> objects. If you haven't used the dynamic
+    object type in C# before you should. They are amazing!</p>
+
+    <p>Using C# you can decode a JSON file into a <code>dynamic</code> object and it will 'dynamically' create the JSON keys as properties on your object. <strong>Awesome!</strong></p>
+
+    <p>Here's the code:</p>
+
+<pre class="prettyprint">
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.IO;
+public static class PostMetaData
+{
+    public static SortedDictionary<string, dynamic> LoadPostMetaData(string pPostMetaDataPath) {
+        var files  = new DirectoryInfo(pPostMetaDataPath).GetFiles();
+        var result = new SortedDictionary<string, dynamic>(new ReverseComparer<string>(Comparer<string>.Default));
+        foreach(var file in files) {
+            var bits = GetPostMetaData(file.FullName);
+            if (bits != null)
+                result.Add(bits.publish_date, bits);
+        }
+        return result;
+    }
+    public static dynamic GetPostMetaData(string pFilename) {
+        dynamic metadata = null;
+        using (var s = new StreamReader(pFilename)) {
+            metadata = System.Web.Helpers.Json.Decode(s.ReadToEnd());
+        }
+        return metadata;
+    }
+}
+</pre>
+
+    <h4>Step 3. Populate the RSS feed</h4>
+    <p>Now I can pass the dictionary of dynamic objects into my <code>RSSSyndicator.GetFeed</code> method and it will have all the information it needs to generate the RSS Feed for my blog. Read my <a href="/blog/blogmatrix-creating-rss-feed"  target="_blank">previous blog 
+    post</a> for more information on how I create my RSS Feed.</p>
+<pre class="prettyprint">
+public static SyndicationFeed GetFeed(SortedDictionary<string, dynamic> pPostMetaData) {
+    var feed = GetBlogInformation(_baseurl);
+    feed.Items = GetPosts(_baseurl, pPostMetaData);
+    return feed;
+}
+</pre>
+
+    <h4>Step 4. Populate home and archives pages</h4>
+    <p>I used to manually maintain the list of blog posts with hard coded HTML. It was easy enought to update but seeing as I have all the necessary information in the JSON files I've changed it 
+        to be dynamically created.</p>
+
+    <p>Here's my modified <code>_Archives.cshtml</code> partial:</p>
+
+<pre class="prettyprint">
+@snippet_archives
+</pre>
+
+    <h4>Step 5. Populate blog post elements</h4>
+    <p>I also decided to use some of the JSON meta data to populate some of the elements for each blog post.</p>
+    <p>At this stage I am only using it for the Title and Meta_Description. In future I may add Author and the Publish_Date.</p>
+<pre class="prettyprint">
+var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00013.json"));
+Page.Title = metadata.title;
+Page.Meta_Description = metadata.meta_description;
+</pre>
+
+    <h3>Conclusion</h3>
+    <p>With a little ingenuity and thinking outside the box I've come up with what I think is an elegant solution. To better understand how it all fits together check out the <a href="https://github.com/kestrelblackmore/BlogMatrix" target="_blank">BlogMatrix GitHub repository</a>.</p>
+    <p>Let me know your thoughts in the comments below!</p>
+
+
+</section>
+
+

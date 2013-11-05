@@ -1,0 +1,11 @@
+{
+    title: "BlogMatrix. Storing Data Without a Database",
+    publish_date: "2013-11-05",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/blogmatrix-storing-data-without-database"},
+    meta_description: "How I store data without having a database for my blog engine BlogMatrix",
+    summary: 
+"
+One of the key features of my blog is there is no database. This was a deliberate design decision. My blog had to be pure HTML/CSS and jQuery. So then how do I store information that is needed to say, populate an rss feed? Good question my friend! Read on...
+"
+}
