@@ -1,0 +1,11 @@
+{
+    title: "Datos. Adventures with Data Structures",
+    publish_date: "2013-11-08",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/projects/datos"},
+    meta_description: "Information on my data structures project called Datos",
+    summary: 
+"
+Datos is spanish for Data. It's also the name of my project to implement some of the more common data structures. If you haven't looked at data structures since your uni days then this series is for you.
+"
+}

@@ -1,0 +1,11 @@
+{
+    title: "Big O Notation and Complexity",
+    publish_date: "2013-11-07",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/big-o-notation-complexity"},
+    meta_description: "How Big O Notation helps us with determing the complexity of algorithms and data structures",
+    summary: 
+"
+Big O Notation helps us determine how complex an operation is. It's of particular interest to the field of Computer Science. So for all you CS geeks out there here's a recap on the subject!
+"
+}

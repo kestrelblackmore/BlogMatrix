@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00014.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00014.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+
+    <p class='lead'>Big O Notation helps us determine how complex an operation is. It's of particular interest to the field of Computer Science. So for all you CS geeks out there here's a recap on the subject!</p>
+    
+    <p>When you start delving into algorithms and data structures you quickly come across Big O Notation. It will tell us how long an operation will take to run as the size of the data set increases.</p>
+
+    <p>It also is a measure of complexity.  The simple fact is that if something takes longer to run it is obviously more complex... logical eh? :)</p>
+
+    <h3>Big O Notation</h3>
+
+    <p>Here's a list of the more common Big O Notations from fastest (best) to slowest (worst).</p>
+
+    <table class="table table-striped table-bordered table-condensed">
+    <tbody>
+        <tr><th width="125"> Notation </th><th>Description</th></tr>
+        <tr>
+            <td>O(1)</td>
+            <td>Constant: operations occur at the same speed no matter the size of the data set.
+                <p style="font-style: italic; padding-top: 10px;">
+                  ie. doing a null check</p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(log n)</td>
+            <td>Logarithmic: operations take slightly longer as the size of the data set increases in orders of magnitude. Very close to O(1).
+                <p style="font-style: italic; padding-top: 10px;">ie. finding an item in a sorted data set using a binary search<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(n)</td>
+            <td>Linear: operations take longer in direct proportion to the size of the data set. 
+                <p style="font-style: italic; padding-top: 10px;">ie. adding up all the values in data set<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(n log n)</td>
+            <td>Linearithmic: as the data set doubles in size, operations take longer by an increasing multiplier of one. 
+                <p style="font-style: italic; padding-top: 10px;">ie. a quick sort<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(n<sup>2</sup>)</td>
+            <td>Quadratic: as the data set doubles in size, operations take four times longer. 
+                <p style="font-style: italic; padding-top: 10px;">ie. two nested loops over a data set<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(2<sup>n</sup>)</td>
+            <td>Exponential: for every new element added to the data set operations take twice as long. 
+                <p style="font-style: italic; padding-top: 10px;">ie. brute force attacking a password<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>O(n!)</td>
+            <td>Factorial: operations take n! times longer in direct proportion to the size of the data set. 
+                <p style="font-style: italic; padding-top: 10px;">ie. calculating fibonacci numbers recursively<br>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+    <p>They say a picture is worth a thousand words so this should help greatly with your understanding of the above :)</p>
+
+    <img src="/assets/img/blog/big-o-complexity.png" style="padding-top: 20px;">
+
+    <h3>Conclusion</h3>
+    <p>The key take away here is that if you are working with large data sets you need to be very careful on the data structure and/or algorithm you use.</p>
+
+    <p>I'm going to be starting a new series on Data Structures soon which will reference these Big O notations. That'll help show the real world application of these theoretical concepts.</p>
+
+    <p>Until then... happy coding!</p>
+</section>
+
+
