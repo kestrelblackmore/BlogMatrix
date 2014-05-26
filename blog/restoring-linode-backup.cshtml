@@ -18,51 +18,64 @@
 </section>
 
 <section id="page_content">
-    <p class='lead'>"Help, my <a href='http://linode.com'  target='_blank'>Linode</a> VPS has died!" "Help, I've lost some data on my Linode VPS!" "Help, I stuffed up a configuration setting now my Linode VPS is bricked!" "WHAT DO I DO!?!" If you've ever uttered those words in desperation I have the answers you seek! </p>
+    <p class='lead'>"Help, my <a href='https://www.linode.com/?r=2b6ad5962c00e4e9657e2b950c69bc3a35ed8801'  target='_blank'>Linode</a> VPS has died!" "Help, I've lost some data on my Linode VPS!" 
+        "Help, I stuffed up a configuration setting now my Linode VPS is bricked!" "WHAT DO I DO!?!" 
+        If you've ever uttered those words in desperation I have the answers you seek! </p>
     
-    <p>Having a server die, losing data or bricking your server through a wrong configuration setting are some of the most gut wrenching moments we can experience. Hopefully you've been taking nightly backups of your server at a bare minimum. Right? Right?!</p>
+    <p>Having a server die, losing data or bricking your server through a wrong configuration setting are some of the most gut wrenching 
+        moments we can experience. Hopefully you've been taking nightly backups of your server at a bare minimum. Right? Right?!</p>
 
-    <p>Linode is a great online hosting company for cheap, reliable, Virtual Privatge Servers running linux. I have several setup for different systems I have developed and host.</p>
+    <p><a href='https://www.linode.com/?r=2b6ad5962c00e4e9657e2b950c69bc3a35ed8801'  target='_blank'>Linode</a> is a great online hosting company for cheap, reliable, 
+        Virtual Privatge Servers running linux. I have several setup for different systems I have developed and host.</p>
     
-    <h3>Noah Pearls</h3>
-    <p>Noah said a ton of awesome stuff:</p>
+    <h3>Background information</h3>
+    <p>The other day I found a bug in one of the SaaS systems I developed. It meant that the client data export functionality wasn't exporting dates correctly. 
+        I've no idea how this got past testing! Anyway it was a very simple fix (only had to change one character) and all was well again.</p>
 
-    <ul>
-        <li>Winners keep trying.</li>
-        <li>When you want something from someone do the hard work so they have no other choice than to say yes.</li>
-        <li>What do I really want? What is my aspiration in life?</li>
-        <li>Create frameworks for decision making. <a href="http://okdork.com/2013/08/19/how_to_simplify_decision_making/" target="_blank">See post by Noah on this here.</a></li>
-        <li>You don't need a co-founder.</li>
-        <li>Everyone has money. Solve a problem they will give you money for.</li>
-        <li>Ask for things. If you don't ask, you don't receive.</li>
-        <li>Noone wants an app or website. They want a solution to their problem.</li>
-        <li>Don't fear failure or rejection. Take the coffee challenge (see below).</li>
-        <li>Why would awesome talent want to work for/with me? What can I offer them?</li>
-        <li>Help people and you will stand out.</li>
-        <li>Put your contact details everywhere. You want to talk to customers.</li>
-        <li>If you're making no money your product is no good.</li>
-        <li>Marketing is easy if people really want your product!</li>
-        <li>When people are buying find out who they are and where other people just like them are.</li>
-    </ul>
+    <p>Around this time one of our client had exported their data, made some changes and wanted to import it again. With our product there are limits on how many records
+        you can have in the system so in between exporting and importing they _purged_ their data. No biggie. Except they exported using the buggy client data export! YIKES!</p>
+
+    <p>Thankfully we had made the decision long ago to pony up the extra $5 a month for nightly, weekly and fortnightly backups. At $5 it was a no brainer. So much so that I didn't
+        even really consider it again or what the process is for restoring backups.</p>
+
+    <h3>Linode Backups to the Rescue</h3>
+
+    <p>Whilst taking solace in our decision to pay for backups I logged into the Linode Manager and did the following:</p>
+
+    <ol>
+        <li>Selected the 'Backups' menu item for my linode</li>
+        <li>Checked the backup history to determine which backup set would have the most up-to-date date before the client purged</li>
+        <li>Found the backup and clicked the "Restore to..." link. It was at this point that I realised I'm using 100% disk capacity for my linode so couldn't do a restore.</li>
+        <li>Thinking outside the square I simply spooled up a new linode box. At a pro-rata rate of $11 for the rest of the month it was a cheap cost to occur to restore the client's data.</li>
+        <li>Repeated step 3 but selected the new linode I just spooled up.</li>
+        <li>Grabbed some popcorn and watched some TV as I waited for the restore to finish. It took about an hour.</li>
+        <li>Grabbed the IP address of the new linode and modified my Linode DNS Manager settings so I could load up a patch subdomain for my SaaS product</li>
+        <li>Logged into the new linode server and modified the NGINX configuration file to listen on the new IP address and subdomain</li>
+        <li>Applied the bug fix to the new linode server</li>
+        <li>Logged into the SaaS web application using the patch subdomain</li>
+        <li>Exported the clients pre-purge data</li>
+        <li>Logged into the production SaaS web application and imported the client data</li>
+        <li>Sat back and thanked my lucky starts as all the data was there!</li>
+    </ol>
     
-    <h3>Live Workshopping</h3>
-    <p>Noah took three people through a bit of a live workshop on how to take their business idea to the next stage. In pretty much all cases the business ideas seemed good to those who put them forward; however, Noah 
-        brang them back to validating the idea and seeing if anyone in the room would buy the product. Rather than hypothesizing about a certain demographic just see if those you have immediate access to will buy.</p>
-    <p>I must appluade those who put forward their ideas and then had to withstand a flurry of questions from Noah. Seeing as Noah regularly charges thousands of dollars for consulting though I think 
-        they got an amazing deal!</p>
+    <h3>Lessons Learnt</h3>
 
-    <h3>The Coffee Challenge</h3>
-    <p>One of the things we need to get over is our fear of failure or rejection. One of the activities Noah told us to help with this is the coffee challenge. The next time you order a coffee ask for
-    a 10% discount. Now a quick question. What immediately went through your head when you read that? "Crazy!" "Stupid!" "They'll say no!"</p>
-    <p>The point is it doesn't matter what they say. If they say no, so what? If they say yes, sweet you saved yourself some money. Regardless don't take it personal and don't worry about
-    what others think.</p>
-    <p>In fact the bigger take away is that you will learn something about yourself. Why did you think the way you initially thought when you heard the coffee challenge? Why did/n't you find it hard?
-    What did you feel afterwards? Elated? Dejected? Go away and analyse your responses and feelings to understand yourself better.</p>
-    <h3>Conclusion</h3>
-    <p>A massive thanks to Noah for coming out to Adelaide and speaking for three hours when he was only down for two. Checkout his blog <a href="http://okdork.com"  target="_blank">okdork.com</a> and company 
-        <a href="http://appsumo.com"  target="_blank">AppSumo</a>. Noah also has an online program on <a href="http://htmyfd.com" target="_blank">how to make your first dollar</a> which covers all of the above in greater detail. Check out these sites today!</p>
-    <p>Also a huge shout out to <a href="https://twitter.com/majorandistil"  target="_blank">Majoran Distillery</a> for all they are doing in the Adelaide Startup scene. To get a speaker like Noah Kagan along is a massive coup so thanks.</p>
-    <p>I'm off to find a problem!</p>
+    <p>Firstly make sure your testing regime is thorough and covers all cases. I still haven't been able to figure out how this bug got through.</p>
+
+    <p>Secondly make sure you have backups in place and know how to restore them. The awesome thing with the Linode backup is that it takes a complete snapshot of the virtual machine.
+        So when I restored it to the new machine it just booted up and was a fully functioning replica of production just with a data set that was a few days old. This made my job so much easier.</p>
+
+    <p>Finally keep a level, cool head and be prepared to think outside the square. What's the problem? What do I need to achieve? What are some options to get the desired outcome? 
+        The more options you have the less likely you are to get stuck.</p>
+
+    <p>--</p>
+
+    <p>In the end the whole process probably took about 2 hours, most of which was spent waiting for the new linode server to spool up and the restore to occur.</p>
+
+    <p>If you haven't already be sure to checkout <a href="https://www.linode.com/?r=2b6ad5962c00e4e9657e2b950c69bc3a35ed8801">Linode</a>. I've been totally impressed with them over the 5 years I've been using them.</p>
+
+    <p>Onwards and upwards!</p>
+
 
 </section>
 
