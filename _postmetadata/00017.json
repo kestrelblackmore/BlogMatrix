@@ -1,0 +1,11 @@
+{
+    title: "BlogMatrix. Adding Blog Comments With Disqus",
+    publish_date: "2014-05-26",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/blogmatrix-adding-disqus-comments"},
+    meta_description: "Adding blog comments, using Disqus, to my blog engine BlogMatrix ",
+    summary: 
+"
+asdf
+"
+}

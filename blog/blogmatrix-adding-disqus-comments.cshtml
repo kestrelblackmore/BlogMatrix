@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00013.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00017.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+
+    string bloglayout = @"@{
+     Layout = '~/layouts/_SiteLayout.cshtml';
+}
+@RenderBody()
+@RenderPage('/partials/_SocialMedia.cshtml')
+@if(Page.ShowComments == true) {
+    @RenderPage('/partials/_Disqus.cshtml')
+};";
+
+    string post_header = @"@{
+    Layout = '~/layouts/_BlogLayout.cshtml';
+    // 00017.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath('~/_postmetadata/00017.json'));
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+    Page.ShowComments = true;
+};";
+}
+
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    @RenderPage("/partials/_BlogMatrixSeries.cshtml")
+
+    <p class='lead'>As a blogger it's great to be able to share your thoughts with the universe. It's even better when the universe talks back! 
+        On a serious note blog comments are a great way to get feedback on your ideas and get some robust discussion going. This is how I set them up, for my blog engine, using Disqus.
+    </p>
+
+    <p>I'm assuming you know what <a href="http://disqus.com/">Disqus</a> is, if not go and read about it <a href="http://disqus.com/websites/">here</a>. Needless to say it's an awesome
+     tool to build a community around your blog. It's also dirt easy to get setup on your blog as it's just a javascript embed code.</p>
+
+    <h3>Getting Disqus Setup</h3>
+
+    <p>As I said it's dirt easy getting setup with Disqus.</p>
+
+    <ol>
+        <li>Sign up for a Disqus account. This will also allow you to post comments on blogs that use Disqus.</li>
+        <li>Login to your Dashboard and click on the "Add Disqus to Site" link under your profile menu.</li>
+        <li>Configure the settings you want.</li>
+        <li>Go to the 'Install' tab underneath settings and select the 'Universal Code' option.</li>
+        <li>Follow the instructions.</li>
+    </ol>
+
+    <p>This is not a detailed post on how to get Disqus up and running so if you have problems getting it setup Google is your friend :)</p>
+   
+    <h3>Integrating Disqus with BlogMatrix</h3>
+
+    <p>The easiest way to use the Disqus javascript embed code would be to put it in my main Layout file <code>layouts/_SiteLayout.cshtml</code>. However this would result in a comments
+         section appearing on every page of my site. Not exactly what I want! </p>
+
+    <p>Instead I created a new Layout file <code>layouts/_BlogLayout.cshtml</code> which contained the following: </p>
+
+<pre class="prettyprint">
+@bloglayout
+</pre>
+
+    <p>The key line in the code listing above is the <code>Page.ShowComments == true</code> if statement. The <code>/partials/_Disqus.cshtml</code> file simply contains the Disqus javascript embed code 
+     and isn't anything really special.</p>
+
+    <p>Each blog post has a configuration section where the Layout file can be specified and any other values set. This is an example of the configuration section for this blog post. You'll notice the
+         new layout file <code>layouts/_BlogLayout.cshtml</code> is used on the first line and the Page.ShowComments value being set on the last line:</p>
+
+<pre class="prettyprint">
+@post_header
+</pre>
+
+    <h3>Conclusion</h3>
+    <p>By setting up my blog posts with a separate Layout file I'm able to maintain control over which pages have comments and which don't. That's one of the beauties of rolling your own custom
+     blog engine. You can do whatever you want :)</p>
+
+    <p>But most importantly by using Disqus I'm able to get discussions up and running extremely quickly without having to write any serious code.</p>
+   
+    <p>So send me a quick comment below!</p>
+
+</section>
+
+
