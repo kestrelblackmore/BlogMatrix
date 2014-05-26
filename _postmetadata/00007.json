@@ -6,7 +6,7 @@
     meta_description: "The actual project structure for my blog engine called BlogMatrix",
     summary: 
 "
-<p class='lead'>My number one priority when creating my own blog engine was that I wanted to host it for free whilst having my own custom domain name. 
-This immediately limited the hosting providers I could use and likewise reduced the programming languages I could develop in.</p>
+My number one priority when creating my own blog engine was that I wanted to host it for free whilst having my own custom domain name. 
+This immediately limited the hosting providers I could use and likewise reduced the programming languages I could develop in.
 "
 }

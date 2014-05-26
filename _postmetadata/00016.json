@@ -6,6 +6,6 @@
     meta_description: "Restoring a Linode VPS backup to recover data or recover your entire server.",
     summary: 
 "
-<p class='lead'>Here are my notes from <a href='http://okdork.com'  target='_blank'>Noah Kagan's</a> visit to Majoran Distillery in Adelaide, Australia. To sum the night up in one word? Awesome!</p>
+'Help, my <a href='https://www.linode.com/?r=2b6ad5962c00e4e9657e2b950c69bc3a35ed8801'  target='_blank'>Linode</a> VPS has died!' 'Help, I've lost some data on my Linode VPS!' 'Help, I stuffed up a configuration setting now my Linode VPS is bricked!' 'WHAT DO I DO!?!' If you've ever uttered those words in desperation I have the answers you seek!
 "
 }

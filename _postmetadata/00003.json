@@ -6,7 +6,7 @@
     meta_description: "What to do when the public key you provided PayPal expires.",
     summary: 
 "
-<p class='lead'>On <a href='http://railscasts.com' target='_blank'>railscasts.com</a> episodes #141 to #143 Ryan went through how to setup online credit card payments via Paypal and IPN. Worked like a treat after a few late nights and some modifications.
-If several years down the track you find the public key you provided Paypal has expired,  do the following.</p>
+On <a href='http://railscasts.com' target='_blank'>railscasts.com</a> episodes #141 to #143 Ryan went through how to setup online credit card payments via Paypal and IPN. Worked like a treat after a few late nights and some modifications.
+If several years down the track you find the public key you provided Paypal has expired,  do the following.
 "
 }

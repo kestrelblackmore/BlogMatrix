@@ -6,6 +6,6 @@
     meta_description: "How to get the jQuery DatePicker to work with the dd/MM/yyyy format in MVC4",
     summary: 
 "
-<p class='lead'>Are you trying to get the jQuery DatePicker to use the dd/MM/yyyy format in MVC4 but having no luck? Me too. I wasted hours on this! Luckily for you I have the solution below :)</p>
+Are you trying to get the jQuery DatePicker to use the dd/MM/yyyy format in MVC4 but having no luck? Me too. I wasted hours on this! Luckily for you I have the solution below :)
 "
 }
