@@ -1,0 +1,194 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00018.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    @RenderPage("/partials/_QIProSeries.cshtml")
+
+    <p class='lead'>In 2010 I co-founded a SaaS product called <a href="http://www.qualityindicatorspro.com.au/" target="_blank">Quality Indicators Pro</a>. I learnt a ton of things during this time both from a technical point of view all the way through to
+        marketing and sales. As usual with most developers who build a product it started with me 'scratching my itch'.</p>
+    
+    <p>At the time I was working at an Registered Training Organisation (an educational organisation just below a University) and we needed to provide a report to the government on learner engagement during our training courses.</p>
+
+    <p>Being a software developer I quickly determined that the government supplied software was rubbish and would provide no meaningful data analysis moving forward. So I went to my boss and told him that I thought there was a good opportunity to develop a product here and if he was interested I'd like to bring the idea to the company.</p>
+
+    <p>This is where the 'scratching my itch' came in. It's a concept that the Open Source community does... 'they scratch their own itch'. They develop systems to solve their problems, the way they want them solved.</p>
+    
+    <p>37 Signals (now called <a href="https://basecamp.com/" target="_blank">Basecamp</a>) calls this <a href="https://gettingreal.37signals.com/ch02_Whats_Your_Problem.php" target="_blank">'Build software for yourself'</a>. It's a very simple concept. If you have a problem you want fixed, it's highly likely that there are other people with the exact same problem. It's also likely that those people might just pay to use your solution for their problem.</p>
+    
+    <p>That's what I was banking on anyway.</p>
+
+    <h3>The Product Scope</h3>
+    
+    <p>The system in it's simplest form was a data entry page with a single page report that the government needed. Pretty easy. 
+        To stand out from the competition though I'd need to incorporate the following features:</p>
+
+    <ul>
+        <li>charting</li>
+        <li>more reports</li>
+        <li>data filtering</li>
+        <li>data entry tricks</li>
+    </ul>
+
+    <p>I'd also need to tackle a bunch of 'business' issues:</p>
+
+     <ul>
+        <li>pricing models and online payments</li>
+        <li>marketing</li>
+        <li>customer acquisition</li>
+        <li>customer onboarding</li>
+    </ul>
+
+    <h3>The Technology Stack</h3>
+
+    <h4>Operating System: Ubuntu</h4>
+
+    <p>I chose very early on to go with a Linux stack as it would provide a lot more deployment options later on and at a more cost effective price. 
+        I then decided on the Ubuntu flavor of Linux as it is a very popular distribution and there is also a lot of documentation for it.</p>
+      
+    <p>This was helpful for both my development machine (which I used as a VM inside Windows XP) and as the server when I eventually deployed to the production servers.</p>
+
+    <p>Speaking of the production servers I chose to go with <a href="https://www.linode.com/?r=2b6ad5962c00e4e9657e2b950c69bc3a35ed8801" target="_blank">Linode</a> for my VPS hosting. Their pricing was excellent and they had pre-packaged versions of Ubuntu that I could boot on my VPS.  They also have excellent documentation.</p>
+
+    <h4>Application Platform: Ruby on Rails</h4>
+
+    <p>Obviously it was going to be a web based application so I decided to use <a href="http://rubyonrails.org/" target="_blank">Ruby on Rails</a> (RoR) due to it being open source. 
+        It's mantra of 'convention over configuration' was also very appealing and I liked it's scaffolding tools which enabled rapid prototyping.</p>
+
+    <p>Initially I was developing on my Windows machine but the ruby interpreter was extremely slow, when running under cygwin, so I eventually setup a Ubuntu VM instead.</p>
+
+    <p>One of the things I loved about RoR was that it was MVC and I had complete control over the HTML output. None of the mangulation that ASP.NET WebForms was renowned for.</p>
+    
+    <h5>Gems</h5>
+    
+    <p>One of the awesome things about RoR is the amount of plugins available to do just about anything you can think of. These are called 'gems' in RoR parlance.</p>
+
+    <p>If you are a .NET developer gems are pretty much the same as NuGet packages, except RoR has had them for about 10 years :).</p>
+
+    <p>To get up and running quicker I made use of the following gems/plugins:</p>
+
+    <ul>
+        <li><a href="https://github.com/plataformatec/devise">Devise</a> - user authentication and permissions</li>
+        <li><a href="https://rubygems.org/gems/fastercsv">fastercsv</a> - processing csv files</li>
+        <li><a href="https://airbrake.io/">Airbrake</a> - SaaS service that collates your applications exceptions/errors</li>
+        <li><a href="http://newrelic.com/">New Relic</a> - application and server performance monitoring</li>
+        <li><a href="http://teethgrinder.co.uk/open-flash-chart/">Open Flash Chart</a> - charting library</li>
+        <li><a href="https://github.com/mileszs/wicked_pdf">Wicked PDF</a> - HTML to PDF generator</li>
+        <li><a href="https://github.com/adzap/validates_timeliness">Validates Timeliness</a> - date and time validation plugin</li>
+        <li><a href="https://github.com/mbleigh/acts-as-taggable-on">Acts as Taggable On</a> - tagging plugin</li>
+        <li><a href="https://github.com/david-kerins/auto_complete">Auto Complete</a> - AJAX auto completion plugin</li>
+    </ul>
+
+    <h4>Online Payments: PayPal</h4>
+    
+    <p>Accepting online payments was easy. We went with PayPal. Back in 2010 there weren't a lot of options and I didn't want to roll my own custom solution and have
+     to setup a merchant account with our bank.</p>
+
+    <p>Setting up PayPal was a pretty cool technical challenge and I used several <a href="">railscast.com</a> episodes to guide me (#141, #143). </p>
+
+    <h4>Database: MySQL</h4>
+
+    <p><a href="http://www.mysql.com/" target="_blank">MySQL</a> is the default database for RoR so I just went with that.  The system I was writing was not going to be database intensive so MySQL was fine.</p>
+
+    <h4>Source control: Git</h4>
+
+    <p>Previously I'd used subversion but git seemed to be the preferred source control tool for RoR developers. I also found the distributed version control concept to be fascinating.</p>
+
+    <p>I still use git and have found some very clever uses for it over the years.</p>
+
+    <h4>Deployment: Capistrano</h4>
+
+    <p>I ended up using capistrano for deployment and it rocks!  The basic concept of capistrano is that you run a rake command on your local development machine.</p>
+
+    <p>This causes capistrano to login to your production server and checkout the latest source code from the repository. Due to the fact that ruby is interpreted this works beautifully!</p>
+
+    <h3>Sales and Marketing</h3>
+
+    <p>The technical side was really the easy part. You have features that need to be developed and you just do it.  There were a few niggles here and there (the charting was difficult due to 
+        poor documentation) but generally it was pretty standard fare.</p>
+    
+    <p>The marketing and sales side of things was completely different!  I didn't have a lot of experience here except what I'd read during those years of wishing to produce my own SaaS product.</p>
+
+    <h4>Pricing Models</h4>
+
+    <p>Determining how to price the product <b>was hard</b>. Our main competing product was free as it was provided by the government (this was the product I deemed rubbish). We were also
+     targetting our product at the smaller RTO's as the larger ones usually had their own capabilities to produce the report.</p>
+
+    <p>I'd like to say we came at a pricing point via some scientific method or by surveying potential customers... but we didn't.</p>
+    
+    <p>We simply picked four price points with each price point allowing you to enter more data. Pretty simple eh??</p>
+
+    <p>We also decided on a yearly subscription model as opposed to monthly. This was so we could get one years worth of revenue straight up front as opposed to a client dropping out after a 
+    couple of months. In hindsight I think this was a great idea as most SaaS products have an average subscription period of three months.</p>
+
+    <p>Along with this we offered a free 30 day trial so potential clients could try the system before subscribing. We didn't require any credit card details up front. A lot of SaaS entrepreneurs 
+    now recommend asking for credit card details up front to get rid of the tyre kickers.</p>
+
+    <h4>Customer Acquisition</h4>
+  
+    <p>With the coding prety much finished it was time to put together a sales website. I wanted to do this in the quickest way possible so I went with WordPress and downloaded a theme that matched
+     the look and feel we where after. Thankfully I knew WordPress pretty well so I was able to customise a few things which didn't take much effort.</p>
+
+    <p>To go along with the website we created a short promotional video to demonstrate the various features of the product. Making a promo video is time consuming!  You need a script, the screenshots and 
+    video footage you are going to display, a voice over and some backing music. Then you have to edit it all together with zooming and section highlighting etc. Technically the voice over was probably the hardest to get 
+    right as I didn't have a high quality microphone, I had to use the mic in my laptop! I'd probably use a service like Fiverr nowadays for the voice over talent. All in all the video turned out alright, 
+        <a href="http://www.qualityindicatorspro.com.au/introducing-quality-indicators-pro/#intro" target="_blank">you can view it here</a>.</p>
+    
+    <p>Whilst I was developing the product we had been compiling an email list and by the time we were ready for lunch we had over 4000 contacts. I used MailChimp to setup a number of email campaigns to send out to the list 
+    announcing the release of QI Pro. Again not really knowing anything about sales copy I did the best I could here and tried to match the look of the website. In hindsight this email could have been a lot better.</p>
+
+    <h4>Customer Onboarding</h4>
+
+    <p>We were ready for the launch when we realised we had to improve our onboarding process so I got to work creating a number of videos on how to use the system. These took even longer than the promo video 
+        as they were signifanctly longer and had to be more concise. In all I created three videos with each being roughly five minutes long. I included links to these videos in the sign up email.</p>
+
+    <p>I created several "your free trial is expiring soon" emails and sent them out a number of days before their trial expired. In hindsight I should have had an email series the whole time of the trial for more 
+    engagement with the customer.</p>
+
+    <p>I also created a couple of follow up emails to try to find out why people didn't subscribe. These had limited success but are still a necessity to garner information if it is offered.</p>
+
+    <h3>Lessons Learnt</h3>
+
+    <p>I learnt a ton of lessons during this whole process and there are a number of things I'll do differently when I release my next SaaS product (I'll have an MVP completed in a month hopefully):</p>
+
+    <ul>
+        <li><b>Make sure your development environment is fast.</b> Originally I was running cygwin under Windows but it was extremely slow. I ended up firing up a virtual machine and loading Ubuntu.</li>
+        <li><b>Keep costs to a minimum.</b> This project was completely bootrapped and was why I chose a linux solution for my production servers, in this case Linode.</li>
+        <li><b>Have a one step process to deploy to your production servers.</b> Through the use of version control and Capistrano I simply type <code>cap deploy</code> and my latest code is deployed.</li>
+        <li><b>Make use of existing libraries.</b> I saved myself a bunch of time by using existing libraries.</li>
+         <li><b>Keep the number of plans to a minimum and charge more money.</b>We had four plans and everyone pretty much went with the cheapest plan. We should have either upped it's price or reduced the amount of data they could
+         enter with it.</li>
+        <li><b>Only have a 14 day trial.</b> 30 days is too long to wait to see if people will convert to paying customers. In fact they should be able to tell within a couple of hours of use whether they will use your product or not.</li>
+        <li><b>Get a list of qualified leads.</b> You will want to launch to as large an audience as possible so gather email addresses whilst still developing the product.</li>
+        <li><b>Keep your leads interested.</b> We should have reached out to our list a lot more. We basically got them signed up and never contacted them again.</li>
+        <li><b>Make use of social media.</b> I wasn't big on social media back in 2010 so didn't use it at all. Our product was in a bit of a niche that wasn't really tech savvy but still it could have created some buzz.</li>
+        <li><b>Reach out to your niches 'celebrities'.</b> Again our niche didn't really have any celebrities but I'll be doing this for future ventures.</li>
+        <li><b>Allocate a lot of time to work on your promotional videos.</b> Getting the four videos done (one promotional, three instructional) took several weeks to complete and </li>
+        <li><b>Setup an email training course.</b> Besides the three instructional videos there was no other help available. Sure the product was failry intuitive but you should help in whatever way you can.</li>
+        <li><b>Update your blog regularly.</b> I did some blog posts but didn't keep them up. It doesn't exactly instill confidence when a blog hasn't been updated in a number of years.</li>
+        <li><b>Keep promoting your product.</b> We still do regular email campaigns to our list and always get people signing up from each of these so don't just rely on organic growth.</li>
+        <li><b>Validate if there is a market.</b> The last and probably most important lesson. You must validate whether a market exists for your product before you expend a huge amount of time on it. We didn't do this 
+        and managed to get lucky.</li>
+    </ul>
+
+    <h3>Summary</h3>
+
+    <p>Creating Quality Indicators Pro was a very exciting and informative adventure! We've in no way set the world on fire but it reaps a tidy return. I also got to release a product from end-to-end, something
+     which many developer dream of but few achieve, so I feel very priviledged.</p>
+
+    <p>So what are you waiting for? Go create your product... <i>tally ho!</i></p>
+
+</section>

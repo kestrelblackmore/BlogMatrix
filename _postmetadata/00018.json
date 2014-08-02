@@ -1,0 +1,12 @@
+{
+    title: "Quality Indicators Pro. My First SaaS Product",
+    publish_date: "2014-07-30",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/projects/qipro"},
+    meta_description: "How I went about producing my first SaaS product, Quality Indicators Pro.",
+    summary: 
+"
+In 2010 I co-founded a SaaS product called <a href='http://www.qualityindicatorspro.com.au/' target='_blank'>Quality Indicators Pro</a>. I learnt a ton of things during this time both from a technical point of view all the way through to
+        marketing and sales. As usual with most developers who build a product it started with me 'scratching my itch'.
+"
+}
