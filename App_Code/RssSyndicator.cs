@@ -7,6 +7,7 @@ using System.ServiceModel.Syndication;
 public static class RssSyndicator
 {
     private const string _baseurl = "http://www.kestrelblackmore.com";
+    private const string _firstappeared = "<p><a href='{0}'>Read More</a></p><p>The post <a rel='nofollow' href='{0}'>{1}</a> appeared first on <a rel='nofollow' href='http://kestrelblackmore.com'>KestrelBlackmore.com</a>.</p>";
 
     public static SyndicationFeed GetFeed(SortedDictionary<string, dynamic> pPostMetaData) {
         
@@ -25,7 +26,7 @@ public static class RssSyndicator
         feed.Id = pbaseUrl;
         feed.Title = new TextSyndicationContent("Kestrel Blackmore Blog");
         feed.Description = new TextSyndicationContent("Hi, I'm Kestrel. I've been a software developer now for 10+ years and I love it!");
-        feed.Copyright = new TextSyndicationContent("Kestrel Blackmore");
+        feed.Copyright = new TextSyndicationContent("KestrelBlackmore.com");
         feed.LastUpdatedTime = new DateTimeOffset(DateTime.Now);
         feed.Generator = "BlogMatrix 1.0";
         feed.ImageUrl = new Uri(pbaseUrl + "/assets/img/blackmore_logo.png");
@@ -51,17 +52,40 @@ public static class RssSyndicator
 
         foreach(var post in pPostMetaData) {
             var item = new SyndicationItem();
-            item.Title = TextSyndicationContent.CreatePlaintextContent(post.Value.title);
-            item.Links.Add(SyndicationLink.CreateAlternateLink(new Uri(pbaseUrl + post.Value.link.url)));
-            item.Summary = TextSyndicationContent.CreateHtmlContent(post.Value.summary);
+            var title = post.Value.title;
+            var url = pbaseUrl + post.Value.link.url;
+            var content = "<p>" + post.Value.summary + "</p>" + FirstAppeared(url, title);
+
+            item.Title = TextSyndicationContent.CreatePlaintextContent(title);
+            item.Links.Add(SyndicationLink.CreateAlternateLink(new Uri(url)));
+            item.Summary = new CDataSyndicationContent(new TextSyndicationContent(content, TextSyndicationContentKind.Html));
+            //item.Summary = TextSyndicationContent.CreatePlaintextContent(post.Value.summary);
+            //item.Summary = TextSyndicationContent.CreateHtmlContent("<![CDATA[" + "<p>" + post.Value.summary + "</p>" + FirstAppeared(url, title) + "]]>");
             var date = DateTime.Parse(post.Value.publish_date);
             item.PublishDate = new DateTimeOffset(date);
-            item.Authors.Add(new SyndicationPerson(post.Value.author.email, post.Value.author.name, post.Value.author.url));
+            item.Authors.Add(new SyndicationPerson(post.Value.author.email, post.Value.author.name, post.Value.author.url));  // the parameters are the wrong way around!
 
             items.Add(item);
 
         }
 
         return items;
+    }
+
+    private static string FirstAppeared(string url, string title) {
+        
+        return String.Format(_firstappeared, url, title);
+    }
+}
+
+public class CDataSyndicationContent : TextSyndicationContent
+{
+    public CDataSyndicationContent(TextSyndicationContent content)
+        : base(content)
+    {}
+
+    protected override void  WriteContentsTo(System.Xml.XmlWriter writer)
+    {
+        writer.WriteCData(Text);
     }
 }

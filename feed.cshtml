@@ -8,10 +8,10 @@
 
     var metaData = PostMetaData.LoadPostMetaData(Server.MapPath("~/_postmetadata"));
 
-    Rss20FeedFormatter rssFormatter = new Rss20FeedFormatter(RssSyndicator.GetFeed(metaData));
+    Atom10FeedFormatter rssFormatter = new Atom10FeedFormatter (RssSyndicator.GetFeed(metaData));
     rssFormatter.WriteTo(feedWriter);
 
-    Response.ContentType = "application/rss+xml";
+    Response.ContentType = "text/xml";
 
     feedWriter.Close();
 }
