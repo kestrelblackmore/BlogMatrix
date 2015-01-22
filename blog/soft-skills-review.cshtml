@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00016.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00020.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+    Page.ShowSocialMedia = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    
+    <p class='lead'>John Sonmez is one of those unique developers who has excelled in a number of different areas: Health (he's buff!); Finance (he has a portfolio of investment properties 
+        that he could retire off) and Career (highly sort after consultant, <a href='http://www.pluralsight.com/author/john-sonmez' target='_blank'>50+ pluralsight courses</a>, 
+        hugely popular <a href='http://simpleprogrammer.com/' target='_blank'>blog</a> and <a href='http://simpleprogrammer.com/podcasts/' target='_blank'>podcasts</a>). Recently John’s latest endeavour has been writing a book called <a href='http://simpleprogrammer.com/softskills' target='_blank'>'Soft Skills: The Software Developer’s Life Manual'</a>.</p>
+
+<p>I first came across John through his <a href='http://entreprogrammers.com/' target='_blank'>Entreprogrammers podcast</a> with Derick Bailey and Josh Earl. Since then I've consumed pretty much everything John has put out 
+    so when I heard he was writing a book, I was very interested to see what he was going to come out with. He didn’t disappoint!</p>
+
+<p>Rather than writing a technical book about some programming language or methodology he took the very smart path of writing a ‘life manual’ for software developers.  
+    Why is this smart you ask?  For a number of reasons:</p>
+<ul>
+<li>Noone else is writing this stuff especially from a software developer’s point of view</li>
+<li>The book content is evergreen, meaning it has a longer shelf life than a technically focussed book and you'll be able to refer back to it for many years to come</li>
+<li>It allows John to provide countless examples that give you an idea of how he got to where he currently is</li>
+</ul>
+<h3>Book Content</h3>
+
+<p>So what’s the book about?  Well it covers so much it’s hard to cover it all but very briefly it's a ‘life manual’ on all the other facets of life outside of programming. 
+    Everything from career, marketing yourself, finances, fitness, productivity, learning hacks and philosopy... This book covers it!</p>
+
+<p>If you are just starting your career or feel your career needs a shot in the arm Section 1 will be invaluable. I wish I’d had this section in my hands when I started my career 
+    over 15 years ago. Unfortunately I kind of just let my career happen rather than having a plan in mind of where I wanted to go and the tactics to get there. This section 
+    answers all of those questions.</p>
+
+<p>Section 2 on marketing yourself is probably the greatest take away from the book and provides some of the greatest keys to how John has managed to explode onto the ‘programmer celebrity circuit’ scene over the last number of years. There is no secret formula here, just a simple understanding of the different ways to raise your profile and then a lot of consistent hard work. 
+    [<i>John has another product that goes into more details on <a href='http://devcareerboost.com/' target='_blank'>'How to market yourself as a software developer'</a> which I can highly recommend.</i>]</p>
+
+<p>If you are still at university and need some learning hacks then Section will be right up your alley as John goes through his 10 step system to learning anything. I was reminded a little of Tim Ferriss and his learning hacks as I read this section and I found John’s system was complementary to Tim’s fantastic concepts. I 
+    loved John’s idea of forcing yourself to teach a subject or topic as an incredible way to fast track your knowledge in an area.</p>
+
+<p>What some might consider the strangest part of the book is Section 6 on fitness but I applaud John for including it. The fact is the stereotype of programmers 
+    being nerdy tubs of lard is largely (no pun intended) correct and unfortunately being unhealthy limits your life expectancy and can reduce your quality of life. 
+    Either way keep an open mind as you read through this section.</p>
+
+<h3>Conclusion</h3>
+
+<p><b><a href='http://simpleprogrammer.com/softskills' target="_blank">Go out and buy the book now</a>.</b> That is how good this book is.   
+
+<p>The brilliant thing is that the book is applicable to anyone in any industry no matter how old or young they are. It should be compulsory reading for all final year school students!</p>
+
+<p>Time for me to go start planning my YouTube channel :)</p>
+
+<p><i>If you've read the book or have any other book recommendations please leave a comment below.</i></p>
+
+
+
+</section>
+
+

@@ -1,0 +1,11 @@
+{
+    title: "If You are a Software Developer Buy This Book Now - Soft Skills by John Sonmez",
+    publish_date: "2015-01-22",
+    author: { name: "Kestrel Blackmore", url: "http://www.kestrelblackmore.com", email: "me@kestrelblackmore.com"},
+    link: { url: "/blog/soft-skills-review"},
+    meta_description: "My review of John Sonmez's new book called 'Soft Skills: The software developer's life manual.",
+    summary: 
+"
+John Sonmez is one of those unique developers who has excelled in a number of different areas: Health (he's buff!); Finance (he has a portfolio of investment properties that he could retire off) and Career (highly sort after consultant, <a href='http://www.pluralsight.com/author/john-sonmez' target='_blank'>50+ pluralsight courses</a>, hugely popular <a href='http://simpleprogrammer.com/' target='_blank'>blog</a> and <a href='http://simpleprogrammer.com/podcasts/' target='_blank'>podcasts</a>). Recently John’s latest endeavour has been writing a book called <a href='http://simpleprogrammer.com/softskills' target='_blank'>'Soft Skills: The Software Developer’s Life Manual'</a>.
+"
+}
