@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00016.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00021.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+    Page.ShowSocialMedia = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    
+    <p class='lead'>Performance reviews can be one of those things that divide managers. As leader though I think we need to think differently. In this video I share my views on performance reviews and whether they are really worth the effort.</p>
+
+    <p><iframe width="560" height="315" src="//www.youtube.com/embed/KFLaoLcldP4" frameborder="0" allowfullscreen></iframe></p>
+
+<p><i>What are your thoughts our experiences with  performance reviews? Leave me a comment below.</i></p>
+
+
+
+</section>
+
+
