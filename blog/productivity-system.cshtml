@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00016.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00023.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+    Page.ShowSocialMedia = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    
+    <p class='lead'>It can be hard to keep track of all the different tasks, emails and requests; especially the high value strategic tasks. In this video I provide a very quick overview of how I do this.</p>
+
+    <p><iframe width="560" height="315" src="//www.youtube.com/embed/lo9_VTi57Ag" frameborder="0" allowfullscreen></iframe></p>
+
+<p>What productivity systems or hacks do you use? Leave me a comment below.</p>
+
+</section>
+
+
