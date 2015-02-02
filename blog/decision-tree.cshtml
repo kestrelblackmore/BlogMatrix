@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/layouts/_BlogLayout.cshtml";
+
+    // 00016.json
+    var metadata = PostMetaData.GetPostMetaData(Server.MapPath("~/_postmetadata/00024.json"));
+    
+    Page.Title = metadata.title;
+    Page.Meta_Description = metadata.meta_description;
+
+    Page.ShowComments = true;
+    Page.ShowSocialMedia = true;
+}
+
+<section id="page_title">
+    <div class="page-header">
+        <h2>@Page.Title</h2>
+    </div>
+</section>
+
+<section id="page_content">
+    
+    <p class='lead'>One of the things I've struggled with over the years is balancing a daily to do list with my bigger picture tasks and strategic goals. It's so easy to just lose sight of your bigger goals because the daily tasks create so much noise!</p>
+
+    <p>Now I know we are suppose to break our yearly goals into monthly, weekly and daily tasks but unfortunately I've never been able to get myself that organized.</p>
+
+    <p>So I sat down and came up with my own system which I explained in a <a href="/blog/productivity-system" target="_blank">quick video in a previous post</a>. The great thing with my system is that it also takes away the paralysis that can occur when deciding what tasks you should do next. ie which is most important to do.</p>
+
+    <h3>Creating the time usage decision tree</h3>
+
+    <p>The first thing you do is come up with a number of important "buckets" that you want to make significant progress in. For example if you were a software developer looking to start freelancing on the side you might come up with the following:</p>
+
+    <ol>
+        <li>Clients</li>
+        <li>Career / Branding</li>
+        <li>Personal </li>
+    </ol>
+
+    <p>You then take each bucket and worked out the common tasks you have to perform for each. As an example here is what I came up with for ‘Clients’:</p>
+
+    <ul>
+        <li>invoice clients</li>
+        <li>do client work</li>
+        <li>follow up projects and emails</li>
+        <li>prospect for more work</li>
+    </ul>
+
+    <p>Then you reorder this list into priority of most to least important. You do this for the other buckets as well. So you now have three life buckets with a prioritized list in each of the most common tasks you do.</p>
+
+    <p>Your next step is to draw this up as a decision tree. Download my example here: <a href="/downloads/time-usage-decision-tree-example.pdf" target="_blank">Time Usage Decision Tree Example</a>.</p>
+    
+    <h3>Using the time usage decision tree</h3>
+
+    <p>The Decision Tree is extremely simple to follow. Any time you have spare time or are looking for the next thing you should be doing just use the Decision Tree.</p>
+
+    <p>Start with the top bucket, which is Clients, and see if you have any "Invoice clients" work to do. If you do, then do it! Give yourself a pat on the back and then move to the next bucket “Career / Branding”. If you don’t have any invoices to prepare go to the next item which is “Follow up projects and emails”. Same thing. Do it and move buckets or if there is nothing to do try the next item.</p>
+
+    <p>The beauty of this system is multi-faceted:</p>
+
+    <ul>
+        <li>you start with the highest priority task in the highest priority bucket</li>
+        <li>you only do one task in a bucket then you move to the next bucket</li>
+        <li>if you only achieve finish one task today it will most likely have been the most important task so you will have a high sense of accomplishment</li>
+        <li>you feel like you are progressing your goals because you are focussing on the most important things</li>
+        <li>due to the bucket by bucket nature you get a more holistic approach to progressing your goals</li>
+    </ul>
+
+    <h3>Getting more control with Trello</h3>
+
+    <p>The next part of the system is purely to help organise and categorise your tasks according to the above bucket and task items. There are a number of ways you could do this:</p>
+
+    <p>1. Create each bucket as it’s own board and the items are their own lists. You then add cards which contain the actual real tasks you need to perform to the relevant list</p>
+
+    <p><img src="/assets/img/blog/decision-tree-trello-multi-boards.png"/></p>
+
+    <p>2. Have one board and instead each bucket is a list. You then add cards which contain your actual real tasks and you mentally determine what type of task each card is.</p>
+
+    <p><img src="/assets/img/blog/decision-tree-trello-single-board.png"/></p>
+
+    <h3>Conclusion</h3>
+
+    <p>This system is very simple and works off the premise of just get one thing done today!  It uses Trello as a way to organise and group tasks/items together. In reality the possibilities are unlimited! </p>
+
+    <p>If you have any that you've created to help your productivity I’d love to hear about them in the comments below.</p>
+
+</section>
+
+
